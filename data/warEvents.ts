@@ -1,10 +1,18 @@
+export interface Mason {
+  name: string;
+  affiliation: string; // Afiliado à Loja Maçônica ou à Obediência
+  religion: string;
+  position: string; // Cargo ou título dentro da organização maçônica
+  country: string;
+  activeYears: { fromYear: number; toYear: number };
+}
 export interface WarEvent {
-  id: string;
-  year: number;
-  title: string;
-  description: string;
-  mediaPortrayal: string;
-  propaganda: {
+  id?: string;
+  year?: number;
+  title?: string;
+  description?: string;
+  mediaPortrayal?: string;
+  propaganda?: {
     sides: {
       name: string;
       slogans: string[];
@@ -13,38 +21,57 @@ export interface WarEvent {
     }[];
     analysis: string;
   };
-  theories: {
+  theories?: {
     title: string;
     description: string;
     evidence?: string;
   }[];
-  image: string;
+  image?: string;
   relatedNews?: {
     title: string;
     description: string;
-    source: string;
+    source?: string;
+    evidence?: string;
     date?: string;
   }[];
   financialInfo?: {
-    banks: {
+    banks?: {
       name: string;
       country: string;
       assets?: string;
-      owners: {
+      amount?: string;
+      currency?: string;
+      owners?: {
         name: string;
+        type?: string;
         religion?: string;
         politicalAffiliation?: string;
+        president?: {
+          name: string;
+          religion?: string;
+
+          fromYear?: number;
+          toYear?: number;
+        };
       }[];
       side?: string;
     }[];
     financiers: {
       name: string;
-      type: "government" | "corporation" | "individual" | "organization";
+      type?: "government" | "corporation" | "individual" | "organization";
       amount?: string;
+      assets?: string;
+      religion?: string;
       currency?: string;
-      side: string;
+      side?: string;
+      president?: {
+        name: string;
+        religion?: string;
+        fromYear?: number;
+        toYear?: number;
+      };
     }[];
-    financialImpact: string;
+    financialImpact?: string;
   };
   casualties?: {
     military?: string;
@@ -57,7 +84,23 @@ export interface WarEvent {
     side: string;
     fate?: string;
   }[];
+  winners?: {
+    name: string;
+    country: string;
+    side: string;
+    date: string;
+  }[];
+  masons?: Mason[];
+  timePeriod?: string;
+  relatedEvents?: string;
+  medicalReports?: {
+    name: string;
+    description: string;
+    evidence: string;
+    source: string;
+  }[];
 }
+
 export interface TimePeriod {
   id: string;
   name: string;
@@ -127,6 +170,1368 @@ export const timePeriods: TimePeriod[] = [
 
 export const warEvents: WarEvent[] = [
   {
+    id: "hundred-years-war-1337",
+    year: 1337,
+    title: "Hundred Years' War",
+    description:
+      "A prolonged conflict between England and France, fought primarily over territorial disputes and the French throne. It spanned 116 years and is marked by significant battles, political intrigue, and the rise of national identities.",
+    mediaPortrayal:
+      "The war was heavily covered by chroniclers, often glorifying major battles such as Agincourt and depicting the conflict as a struggle for national survival, with heroic leaders like Joan of Arc emerging from the French side.",
+    propaganda: {
+      sides: [
+        {
+          name: "Kingdom of England",
+          slogans: ["Claim to the French Throne", "Defenders of English soil"],
+          mediaOutlets: ["Royal proclamations", "Chroniclers"],
+          techniques: ["Military victories", "Glorification of royal lineage"],
+        },
+        {
+          name: "Kingdom of France",
+          slogans: ["Defenders of the Crown", "Liberators of France"],
+          mediaOutlets: ["Royal speeches", "Religious endorsements"],
+          techniques: ["Religious justification", "Patriotism and unity"],
+        },
+      ],
+      analysis:
+        "Both sides used media and propaganda to rally support for their causes. The English framed their struggle as a just claim to the throne, while the French presented themselves as defenders of their kingdom and sovereignty.",
+    },
+    theories: [
+      {
+        title: "Feudalism vs. Nation-State",
+        description:
+          "Some historians argue that the war marked the decline of feudalism and the rise of the modern nation-state, as the conflict brought about the centralization of power in both England and France.",
+        evidence:
+          "The creation of standing armies and new forms of taxation, alongside the increasing power of monarchs.",
+      },
+    ],
+    image:
+      "https://cdn.britannica.com/19/172519-050-F3B2578B/Battle-of-Agincourt.jpg",
+    relatedNews: [
+      {
+        title: "Battle of Agincourt (1415)",
+        description:
+          "The English achieved a decisive victory at the Battle of Agincourt, where Henry V's outnumbered forces defeated the French.",
+        source: "Chronicles of the Hundred Years' War",
+        date: "1415-10-25",
+      },
+    ],
+    financialInfo: {
+      banks: [
+        {
+          name: "Medici Bank",
+          country: "Italy",
+          assets: "Gold reserves",
+          amount: "Significant financing for France",
+          currency: "Florin",
+          owners: [
+            {
+              name: "Medici Family",
+              type: "individual",
+              religion: "Catholic",
+              politicalAffiliation: "Pro-French interests",
+            },
+          ],
+          side: "France",
+        },
+      ],
+      financiers: [
+        {
+          name: "King Edward III",
+          type: "government",
+          amount: "Funding through taxes and the exploitation of territories",
+          assets: "Royal Treasury",
+          religion: "Catholic",
+          currency: "Pound Sterling",
+          side: "England",
+        },
+      ],
+      financialImpact:
+        "The prolonged war drained the economies of both kingdoms, leading to massive debt and an increased reliance on loans from banking families like the Medici.",
+    },
+    casualties: {
+      military: "Approximately 3 million",
+      civilian: "Hundreds of thousands (due to famine and disease)",
+      total: "3-4 million",
+    },
+    keyFigures: [
+      {
+        name: "Edward III of England",
+        role: "King of England",
+        side: "England",
+        fate: "Reigned until 1377",
+      },
+      {
+        name: "Joan of Arc",
+        role: "French military leader",
+        side: "France",
+        fate: "Executed in 1431",
+      },
+    ],
+    winners: [
+      {
+        name: "Kingdom of France",
+        country: "France",
+        side: "France",
+        date: "1453-10-19",
+      },
+    ],
+  },
+  {
+    id: "war-of-the-roses-1455",
+    year: 1455,
+    title: "War of the Roses",
+    description:
+      "A series of civil wars fought between the houses of Lancaster (red rose) and York (white rose) for control of the English throne. The conflict led to the eventual establishment of the Tudor dynasty.",
+    mediaPortrayal:
+      "Medieval chroniclers depicted the war as a tragic struggle, often focusing on the personal ambitions of the key players rather than broader political causes. The story of Richard III's villainous reign became legendary in English culture.",
+    propaganda: {
+      sides: [
+        {
+          name: "House of Lancaster",
+          slogans: ["Rightful King of England", "Red Rose of Valor"],
+          mediaOutlets: ["Royal proclamations", "Pamphlets"],
+          techniques: [
+            "Appeals to royal lineage",
+            "Depiction of Yorkists as traitors",
+          ],
+        },
+        {
+          name: "House of York",
+          slogans: ["True King of England", "White Rose of Purity"],
+          mediaOutlets: ["Chroniclers", "Public speeches"],
+          techniques: [
+            "Depiction of Lancaster as usurpers",
+            "Appeals to loyalty and justice",
+          ],
+        },
+      ],
+      analysis:
+        "The media portrayed the war as a noble struggle for the rightful ruler of England, but it was driven largely by personal ambition and a desire for power.",
+    },
+    theories: [
+      {
+        title: "Dynastic Struggle vs. Feudal Decline",
+        description:
+          "The War of the Roses may have been more about the breakdown of feudal structures and the shift toward a centralized monarchy than about dynastic claims alone.",
+        evidence:
+          "The eventual victory of Henry VII marked the end of feudal fragmentation and the rise of the Tudor dynasty, which centralized power.",
+      },
+    ],
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/King_Henry_VII_from_NPG.jpg/250px-King_Henry_VII_from_NPG.jpg",
+    relatedNews: [
+      {
+        title: "Battle of Bosworth Field",
+        description:
+          "The decisive battle of the war, where Richard III was killed and Henry Tudor ascended to the throne as Henry VII.",
+        source: "Chronicles of the War of the Roses",
+        date: "1485-08-22",
+      },
+    ],
+    financialInfo: {
+      banks: [
+        {
+          name: "Medici Bank",
+          country: "Italy",
+          assets: "Gold reserves",
+          amount: "None directly involved in this war",
+          currency: "Florin",
+          owners: [
+            {
+              name: "Medici Family",
+              type: "individual",
+              religion: "Catholic",
+              politicalAffiliation: "Pro-Tudor interests",
+            },
+          ],
+          side: "Tudor (via alliances)",
+        },
+      ],
+      financiers: [
+        {
+          name: "Henry Tudor",
+          type: "individual",
+          amount: "Personal fortune from his marriage to Elizabeth of York",
+          side: "Lancaster (by marriage)",
+          religion: "Catholic",
+          currency: "Pound Sterling",
+        },
+      ],
+      financialImpact:
+        "The war drained England's treasury and destabilized its economy, but the eventual victory of Henry VII helped bring long-term stability.",
+    },
+    casualties: {
+      military: "Approx. 100,000",
+      civilian: "Tens of thousands (due to sieges and rebellion)",
+      total: "Over 100,000",
+    },
+    keyFigures: [
+      {
+        name: "Richard III",
+        role: "King of England",
+        side: "House of York",
+        fate: "Killed at the Battle of Bosworth",
+      },
+      {
+        name: "Henry VII",
+        role: "King of England",
+        side: "House of Lancaster",
+        fate: "Founded the Tudor dynasty",
+      },
+    ],
+    winners: [
+      {
+        name: "House of Tudor",
+        country: "England",
+        side: "Lancaster (via marriage)",
+        date: "1485-08-22",
+      },
+    ],
+  },
+  {
+    id: "italian-wars-1494",
+    year: 1494,
+    title: "Guerras Italianas",
+    description:
+      "Uma série de conflitos militares entre várias potências europeias, incluindo França, Espanha e os Estados italianos, pela supremacia territorial na península italiana. As guerras foram motivadas tanto por disputas dinásticas quanto por questões de controle territorial.",
+    mediaPortrayal:
+      "Durante o período, as batalhas e as vitórias foram amplamente retratadas por cronistas e artistas. A representação da luta pela Itália também foi uma poderosa ferramenta de propaganda, com imagens de bravura e tragédia associadas à luta pelo controle das cidades-estados italianas.",
+    propaganda: {
+      sides: [
+        {
+          name: "Reino da França",
+          slogans: [
+            "Defensores da Coroa de Nápoles",
+            "Unidade Francesa em Itália",
+          ],
+          mediaOutlets: ["Proclamações reais", "Cartazes e escritos"],
+          techniques: [
+            "Apelo à herança dinástica",
+            "Glorificação da expansão imperial francesa",
+          ],
+        },
+        {
+          name: "Reino de Espanha",
+          slogans: [
+            "A Ordem na Península",
+            "Reinos Unidos sob a Coroa de Aragão",
+          ],
+          mediaOutlets: [
+            "Pragmáticas reais",
+            "Diplomacia e aliança com o Papa",
+          ],
+          techniques: ["Proteção do Papado", "Justificação religiosa"],
+        },
+        {
+          name: "Estados Italianos (Milão, Veneza, Nápoles, etc.)",
+          slogans: ["Autonomia italiana", "A unidade sob as cidades-estados"],
+          mediaOutlets: ["Manifestos locais", "Crônicas italianas"],
+          techniques: [
+            "Foco em resistir à ocupação estrangeira",
+            "Apelo à identidade local e autonomia",
+          ],
+        },
+      ],
+      analysis:
+        "Cada lado usou a propaganda para afirmar que lutava por interesses legítimos — seja por heranças dinásticas ou pela defesa da soberania italiana contra as potências estrangeiras. A rivalidade entre França e Espanha, em particular, foi uma característica central da guerra.",
+    },
+    theories: [
+      {
+        title: "Rivalidade Franco-Espanhola",
+        description:
+          "A guerra entre França e Espanha durante as Guerras Italianas pode ser vista como uma expressão da luta pela supremacia no Mediterrâneo e na Europa, onde ambos os reinos buscavam expandir suas influências políticas e territoriais.",
+        evidence:
+          "As sucessivas invasões da Itália pelas forças francesas e espanholas, culminando no controle do Reino de Nápoles pela Espanha, ilustram essa disputa.",
+      },
+      {
+        title: "Ascensão do Poder Papal",
+        description:
+          "As Guerras Italianas também são vistas como um período em que o Papado, embora nominalmente religioso, se envolveu diretamente na política territorial, tentando expandir sua influência sobre os Estados italianos.",
+        evidence:
+          "A aliança do Papa com o império espanhol para derrotar forças invasoras e garantir a estabilidade do domínio papal em Roma.",
+      },
+    ],
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/d/db/Habsburg_dominions_1700.png",
+    relatedNews: [
+      {
+        title: "Batalha de Pavia (1525)",
+        description:
+          "Uma das batalhas decisivas das Guerras Italianas, onde o exército francês foi derrotado pelas forças espanholas, resultando na captura do rei Francisco I.",
+        source: "Crônicas de guerra",
+        date: "1525-02-24",
+      },
+      {
+        title: "Tratado de Cateau-Cambrésis (1559)",
+        description:
+          "O tratado marcou o fim das Guerras Italianas, com a França renunciando às suas pretensões sobre a Itália e a Espanha consolidando sua supremacia na península.",
+        source: "Tratados de Paz",
+        date: "1559-04-03",
+      },
+    ],
+    financialInfo: {
+      banks: [
+        {
+          name: "Banco di San Giorgio",
+          country: "Gênova, Itália",
+          assets: "Resgates financeiros usados para financiar tropas italianas",
+          amount: "Grandes somas destinadas ao financiamento das campanhas",
+          currency: "Lira",
+          owners: [
+            {
+              name: "Família Doria",
+              religion: "Católica",
+              politicalAffiliation: "Pro-Veneza e anti-França",
+            },
+          ],
+          side: "Estados italianos",
+        },
+      ],
+      financiers: [
+        {
+          name: "Reino de Espanha",
+          type: "government",
+          amount: "Empréstimos e fornecimento de tropas espanholas",
+          assets: "Imensos recursos financeiros e militares",
+          religion: "Católica",
+          currency: "Pezeta",
+          side: "Espanha",
+        },
+        {
+          name: "Reino da França",
+          type: "government",
+          amount: "Financiamento das campanhas de invasão italiana",
+          assets: "Bancadas reais e recursos do norte da França",
+          religion: "Católica",
+          currency: "Franco francês",
+          side: "França",
+        },
+      ],
+      financialImpact:
+        "As Guerras Italianas tiveram um enorme impacto financeiro, com enormes somas gastas em recrutamento de exércitos, campanhas militares e pagamentos de aliados. O conflito resultou em uma enorme dívida para os países envolvidos.",
+    },
+    casualties: {
+      military:
+        "Estima-se que entre 100.000 e 200.000 soldados perderam a vida em batalhas e cercos",
+      civilian:
+        "Milhares de civis morreram devido a saques, doenças e destruição de cidades",
+      total: "Mais de 200.000",
+    },
+    keyFigures: [
+      {
+        name: "Carlos I da Espanha",
+        role: "Rei da Espanha",
+        side: "Espanha",
+        fate: "Consolidou o poder espanhol na Itália após a vitória",
+      },
+      {
+        name: "Luís XII da França",
+        role: "Rei da França",
+        side: "França",
+        fate: "Faleceu enquanto buscava expandir as fronteiras francesas na Itália",
+      },
+      {
+        name: "Papa Júlio II",
+        role: "Papa",
+        side: "Espanha (em aliança)",
+        fate: "Apoiou os esforços da Espanha para manter a estabilidade do papado",
+      },
+    ],
+    winners: [
+      {
+        name: "Reino da Espanha",
+        country: "Espanha",
+        side: "Espanha",
+        date: "1559-04-03",
+      },
+    ],
+  },
+  {
+    id: "dutch-independence-war-1568",
+    year: 1568,
+    title: "Guerra de Independência dos Países Baixos",
+    description:
+      "Um conflito entre as Províncias Unidas dos Países Baixos e o Reino da Espanha, onde os territórios dos Países Baixos buscaram independência do domínio espanhol. A guerra foi marcada por lutas religiosas, políticas e econômicas, culminando na independência de facto dos Países Baixos em 1648.",
+    mediaPortrayal:
+      "A guerra foi amplamente retratada como uma luta contra a opressão religiosa e política. As representações mostraram a resistência heróica das cidades e províncias contra o domínio espanhol, com o uso de imagens simbólicas do protestantismo e da liberdade.",
+    propaganda: {
+      sides: [
+        {
+          name: "Reino de Espanha",
+          slogans: [
+            "Manutenção da unidade católica",
+            "Defesa da coroa espanhola",
+          ],
+          mediaOutlets: ["Editais reais", "Panfletos religiosos"],
+          techniques: [
+            "Apelo à lealdade religiosa",
+            "Ameaça de heresia e rebelião",
+          ],
+        },
+        {
+          name: "Províncias Unidas (Países Baixos)",
+          slogans: [
+            "Liberdade religiosa",
+            "Independência contra a opressão",
+            "Unidade das províncias",
+          ],
+          mediaOutlets: [
+            "Cartazes de rebeldes",
+            "Escritos clandestinos",
+            "Traduções de protestos",
+          ],
+          techniques: [
+            "Enfatização das injustiças espanholas",
+            "Promoção da liberdade religiosa e política",
+          ],
+        },
+      ],
+      analysis:
+        "Cada lado usou a propaganda para reforçar sua legitimidade: a Espanha com sua defesa da ortodoxia católica e da autoridade real, e as Províncias Unidas com sua luta pela autonomia e liberdade religiosa, especialmente contra o autoritarismo do Habsburgo.",
+    },
+    theories: [
+      {
+        title: "Religião e Autonomia",
+        description:
+          "A Guerra de Independência dos Países Baixos é vista frequentemente como uma luta pela liberdade religiosa (protestante contra católica) e pela autonomia política das regiões sob domínio estrangeiro.",
+        evidence:
+          "As tensões religiosas entre católicos e protestantes, como o movimento calvinista, foram fundamentais para os conflitos que ocorreram durante a guerra.",
+      },
+      {
+        title: "A Ascensão do Nacionalismo",
+        description:
+          "A guerra também é vista como um dos primeiros exemplos de nacionalismo moderno, com as províncias do norte se unindo sob uma bandeira comum para formar um novo estado independente contra um monarca estrangeiro.",
+        evidence:
+          "O desenvolvimento das Províncias Unidas como uma entidade independente e autônoma, com uma identidade própria, refletiu os elementos de um movimento nacionalista.",
+      },
+    ],
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/3/30/La_ville_de_Chartres_assi%C3%A9g%C3%A9e_et_battue_par_le_Prince_de_Cond%C3%A9_en_1568.png",
+    relatedNews: [
+      {
+        title: "Batalha de Heiligerlee (1568)",
+        description:
+          "Primeira grande batalha da guerra, onde as forças rebeldes dos Países Baixos enfrentaram as tropas espanholas.",
+        source: "Crônicas militares flamengas",
+        date: "1568-05-23",
+      },
+      {
+        title: "Assinatura da Paz de Westfália (1648)",
+        description:
+          "Tratado que confirmou a independência dos Países Baixos da Espanha e assegurou a autonomia das províncias.",
+        source: "Tratados de paz",
+        date: "1648-10-24",
+      },
+    ],
+    financialInfo: {
+      banks: [
+        {
+          name: "Banco de Antuérpia",
+          country: "Países Baixos",
+          assets: "Reservas financeiras dos comerciantes locais",
+          amount:
+            "Grande parte da economia local foi direcionada para financiar os custos da guerra",
+          currency: "Florim",
+          owners: [
+            {
+              name: "Mercadores do Norte",
+              religion: "Protestante",
+              politicalAffiliation: "Independência local",
+            },
+          ],
+          side: "Províncias Unidas",
+        },
+      ],
+      financiers: [
+        {
+          name: "Reino de Espanha",
+          type: "government",
+          amount: "Financiamento das tropas espanholas e fortificações",
+          assets: "Recursos das Américas e das finanças reais",
+          religion: "Católica",
+          currency: "Real",
+          side: "Espanha",
+        },
+        {
+          name: "República das Províncias Unidas",
+          type: "government",
+          amount: "Empréstimos e apoio de comerciantes",
+          assets: "Recursos acumulados da guerra e do comércio",
+          religion: "Protestante",
+          currency: "Florim",
+          side: "Províncias Unidas",
+        },
+      ],
+      financialImpact:
+        "A guerra teve grandes custos financeiros para ambos os lados. O Reino de Espanha ficou profundamente endividado, especialmente devido às suas campanhas militares em outros lugares da Europa, enquanto as Províncias Unidas se beneficiaram do comércio e de empréstimos financeiros, especialmente da cidade de Amsterdã.",
+    },
+    casualties: {
+      military:
+        "Estimativas indicam que mais de 100.000 soldados morreram durante os confrontos ao longo de mais de 80 anos.",
+      civilian:
+        "Milhares de civis morreram devido a saques, massacres e o impacto das batalhas.",
+      total: "Mais de 150.000",
+    },
+    keyFigures: [
+      {
+        name: "Filipe II da Espanha",
+        role: "Rei da Espanha",
+        side: "Espanha",
+        fate: "Tentou esmagar a revolta e manter o controle sobre os Países Baixos, mas fracassou após décadas de guerra.",
+      },
+      {
+        name: "Guilherme de Orange",
+        role: "Príncipe dos Países Baixos",
+        side: "Províncias Unidas",
+        fate: "Liderou a resistência contra o domínio espanhol, sendo uma figura chave na independência dos Países Baixos.",
+      },
+      {
+        name: "Don Juan de Áustria",
+        role: "General espanhol",
+        side: "Espanha",
+        fate: "Tinha o comando das forças espanholas e foi responsável pela reconquista temporária de algumas áreas antes de sua morte precoce.",
+      },
+    ],
+    winners: [
+      {
+        name: "Províncias Unidas",
+        country: "Países Baixos",
+        side: "Províncias Unidas",
+        date: "1648-10-24",
+      },
+    ],
+  },
+  {
+    id: "thirty-years-war-1618",
+    year: 1618,
+    title: "Guerra dos Trinta Anos",
+    description:
+      "A Guerra dos Trinta Anos foi um conflito religioso, político e territorial que envolveu a maioria das grandes potências europeias. Começou com as tensões religiosas entre católicos e protestantes no Império Romano Germânico, mas se expandiu para uma guerra mais ampla envolvendo dinastias e estados europeus. O conflito resultou em enormes destruições e uma reorganização do equilíbrio de poder na Europa.",
+    mediaPortrayal:
+      "A guerra foi amplamente representada em termos religiosos e políticos, com imagens de massacres, batalhas e o sofrimento da população civil. As propagandas de ambos os lados focaram em questões de fé e lealdade dinástica, muitas vezes exagerando a brutalidade das ações inimigas.",
+    propaganda: {
+      sides: [
+        {
+          name: "Católicos (Habsburgos e aliados)",
+          slogans: [
+            "Unidade religiosa",
+            "Defesa da fé católica",
+            "Manutenção da ordem imperial",
+          ],
+          mediaOutlets: [
+            "Panfletos religiosos",
+            "Jornais controlados pela corte",
+            "Pregações e sermões",
+          ],
+          techniques: [
+            "Apelo ao medo do protestantismo",
+            "Unidade contra os heréticos",
+            "Chamado à defesa do Império",
+          ],
+        },
+        {
+          name: "Protestantes (Estados do Norte e aliados)",
+          slogans: [
+            "Liberdade religiosa",
+            "Liberdade contra a opressão",
+            "Autonomia para os estados protestantes",
+          ],
+          mediaOutlets: [
+            "Panfletos protestantes",
+            "Cartazes de resistência",
+            "Publicações anti-imperiais",
+          ],
+          techniques: [
+            "Apelo à resistência contra a tirania",
+            "Enfatização da luta pela liberdade religiosa",
+            "Apelo à autossuficiência dos estados protestantes",
+          ],
+        },
+      ],
+      analysis:
+        "A propaganda foi uma ferramenta crucial para angariar apoio, com cada lado tentando retratar o outro como um inimigo opressor. O medo religioso e as lealdades políticas desempenharam um papel significativo nas campanhas de propaganda durante toda a guerra.",
+    },
+    theories: [
+      {
+        title: "Conflito Religioso vs. Político",
+        description:
+          "Embora a guerra tenha começado com disputas religiosas entre católicos e protestantes, ela rapidamente se transformou em um conflito dinástico e político, envolvendo questões de poder e controle territorial.",
+        evidence:
+          "A guerra começou com a Defenestração de Praga, um evento essencialmente político, mas rapidamente escalou para uma luta religiosa mais ampla, com o envolvimento de diferentes potências europeias.",
+      },
+      {
+        title: "Impacto da Guerra no Equilíbrio Europeu",
+        description:
+          "A guerra alterou permanentemente o equilíbrio de poder na Europa. A ascensão de potências como a França e a diminuição do poder dos Habsburgos alteraram a dinâmica política e territorial.",
+        evidence:
+          "O Tratado de Westfália (1648) resultou em mudanças significativas nas fronteiras e no equilíbrio de poder, com os Habsburgos enfraquecidos e os estados protestantes, como a Suécia, consolidando maior poder.",
+      },
+    ],
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/d/d7/Thirty_Years_War_Collage.jpg",
+    relatedNews: [
+      {
+        title: "Defenestração de Praga (1618)",
+        description:
+          "O evento que marcou o início da Guerra dos Trinta Anos, onde dois representantes católicos foram jogados pela janela do Castelo de Praga, desencadeando um conflito aberto.",
+        source: "Crônicas de Praga",
+        date: "1618-05-23",
+      },
+      {
+        title: "Tratado de Westfália (1648)",
+        description:
+          "Tratado de paz que concluiu a Guerra dos Trinta Anos, resultando em mudanças territoriais e no reconhecimento da independência de várias regiões.",
+        source: "Tratados de paz",
+        date: "1648-10-24",
+      },
+    ],
+    financialInfo: {
+      banks: [
+        {
+          name: "Banco Imperial de Viena",
+          country: "Áustria",
+          assets: "Apoio financeiro dos Habsburgos e das finanças imperiais.",
+          amount:
+            "Fortes investimentos e empréstimos foram feitos para manter o esforço de guerra.",
+          currency: "Florim",
+          owners: [
+            {
+              name: "Casa dos Habsburgos",
+              religion: "Católica",
+              politicalAffiliation: "Imperial",
+            },
+          ],
+          side: "Católicos",
+        },
+        {
+          name: "Banco da Suécia",
+          country: "Suécia",
+          assets:
+            "Suécia obteve fundos através de empréstimos e saques nas regiões conquistadas.",
+          amount:
+            "Grande parte do financiamento veio de empréstimos de comerciantes suecos e da recuperação de territórios conquistados.",
+          currency: "Coroa Sueca",
+          owners: [
+            {
+              name: "Reino da Suécia",
+              religion: "Luterana",
+              politicalAffiliation: "Protestante",
+            },
+          ],
+          side: "Protestantes",
+        },
+      ],
+      financiers: [
+        {
+          name: "Reino da França",
+          type: "government",
+          amount:
+            "Financiamento de campanhas militares e apoio a aliados protestantes.",
+          assets: "Recursos da nobreza francesa e comércio.",
+          religion: "Católica",
+          currency: "Franco",
+          side: "Protestantes",
+        },
+        {
+          name: "Reino de Espanha",
+          type: "government",
+          amount:
+            "Gastos militares para manter o império e lutar contra a expansão protestante.",
+          assets: "Financiamento de tropas e forças da casa dos Habsburgos.",
+          religion: "Católica",
+          currency: "Real",
+          side: "Católicos",
+        },
+      ],
+      financialImpact:
+        "A guerra causou um grande impacto econômico, com enormes dívidas sendo assumidas por várias nações e a desestabilização econômica de muitas regiões devastadas pelos combates. As finanças das grandes potências europeias foram fortemente afetadas, especialmente devido aos altos custos de guerra e ao saques das tropas em territórios conquistados.",
+    },
+    casualties: {
+      military:
+        "Estima-se que mais de 8 milhões de pessoas, incluindo soldados e civis, morreram devido ao conflito.",
+      civilian:
+        "A população civil sofreu enormemente, com muitas mortes devido a saques, fome e doenças.",
+      total: "Mais de 8 milhões",
+    },
+    keyFigures: [
+      {
+        name: "Ferdinando II",
+        role: "Imperador do Sacro Império Romano-Germânico",
+        side: "Católicos",
+        fate: "Tentou manter o controle sobre o império, mas não conseguiu evitar o enfraquecimento da autoridade imperial.",
+      },
+      {
+        name: "Gustavo II Adolfo",
+        role: "Rei da Suécia",
+        side: "Protestantes",
+        fate: "Liderou as forças protestantes até sua morte na Batalha de Lutzen em 1632, tornando-se um herói nacional na Suécia.",
+      },
+      {
+        name: "Richelieu",
+        role: "Cardeal e Primeiro-ministro da França",
+        side: "Protestantes",
+        fate: "Envolvido no financiamento e apoio aos estados protestantes durante a guerra, visando enfraquecer a casa dos Habsburgos.",
+      },
+    ],
+    winners: [
+      {
+        name: "França",
+        country: "França",
+        side: "Protestantes",
+        date: "1648-10-24",
+      },
+      {
+        name: "Suécia",
+        country: "Suécia",
+        side: "Protestantes",
+        date: "1648-10-24",
+      },
+    ],
+  },
+  {
+    id: "war-of-devolution-1667",
+    year: 1667,
+    title: "Guerra de Devolução",
+    description:
+      "A Guerra de Devolução foi um conflito breve entre a França e a Espanha, com o rei Luís XIV reivindicando territórios do Franco-Condado, com base na alegação de que esses territórios deveriam ser devolvidos à França como parte de um dote real da esposa de Luís XIV, Maria Teresa da Áustria. A guerra foi marcada por rápidas vitórias francesas, mas terminou com a intervenção das outras potências europeias e a assinatura de um tratado de paz.",
+    mediaPortrayal:
+      "A guerra foi retratada como uma demonstração do poder militar francês e da ambição territorial de Luís XIV, com uma ênfase nas vitórias rápidas da França. As imagens e relatos focavam no grande poderio do exército francês e no domínio militar de Luís XIV.",
+    propaganda: {
+      sides: [
+        {
+          name: "França",
+          slogans: [
+            "Restaurar o direito de dote",
+            "Glória de Luís XIV",
+            "Expandir a França",
+          ],
+          mediaOutlets: [
+            "Panfletos reais",
+            "Jornais franceses",
+            "Crônicas de guerra",
+          ],
+          techniques: [
+            "Exaltação do poder do rei",
+            "Justificação do conflito com base no direito dinástico",
+            "Promoção das vitórias francesas nas batalhas",
+          ],
+        },
+        {
+          name: "Espanha e Países Baixos",
+          slogans: [
+            "Manter a soberania",
+            "Proteger os territórios hispânicos",
+            "Resistência à expansão francesa",
+          ],
+          mediaOutlets: [
+            "Publicações de estados aliados",
+            "Jornais de Amsterdã",
+            "Cartazes de resistência",
+          ],
+          techniques: [
+            "Apelo à defesa do status quo",
+            "Apelo ao medo da hegemonia francesa",
+            "Enfatização da lealdade ao império espanhol",
+          ],
+        },
+      ],
+      analysis:
+        "A propaganda francesa enfatizou o direito dinástico e a glória de Luís XIV como justificativa para a guerra. Por outro lado, a propaganda espanhola e dos Países Baixos apelou para o medo da expansão francesa e a necessidade de manter o equilíbrio de poder na Europa.",
+    },
+    theories: [
+      {
+        title: "Direito Dinástico vs. Soberania Nacional",
+        description:
+          "O conflito foi em grande parte uma disputa sobre direitos dinásticos, com Luís XIV reivindicando terras com base no dote de sua esposa, enquanto a Espanha e os Países Baixos viam essas reivindicações como uma ameaça à soberania e à ordem europeia.",
+        evidence:
+          "A França baseou sua guerra no que chamava de 'direito de devolução' das terras, enquanto a Espanha e os Países Baixos resistiram a essa justificação como uma tentativa de Luís XIV de expandir seu domínio.",
+      },
+      {
+        title: "Ambições de Luís XIV",
+        description:
+          "A guerra de 1667 foi uma das primeiras manifestações das ambições territoriais de Luís XIV, que mais tarde continuaria sua política expansionista em guerras subsequentes.",
+        evidence:
+          "A França rapidamente obteve vitórias e anexou terras importantes, como o Franco-Condado, sem uma resistência significativa, o que reforçou a ideia de que Luís XIV estava em busca de consolidar um império francês.",
+      },
+    ],
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/9/9e/LeBrun_Louis_XIV_at_Douai_in_the_War_of_Devolution_1667.jpg",
+    relatedNews: [
+      {
+        title: "Batalha de Seneffe (1667)",
+        description:
+          "Uma das batalhas importantes na Guerra de Devolução onde os exércitos franceses derrotaram as forças aliadas dos Países Baixos e da Espanha.",
+        source: "Crônicas de guerra francesas",
+        date: "1667-08-11",
+      },
+      {
+        title: "Tratado de Aix-la-Chapelle (1668)",
+        description:
+          "O tratado que encerrou a Guerra de Devolução, no qual a França manteve as conquistas do Franco-Condado, mas teve que desistir de outras áreas.",
+        source: "Tratados de paz",
+        date: "1668-05-02",
+      },
+    ],
+    financialInfo: {
+      banks: [
+        {
+          name: "Banco de Paris",
+          country: "França",
+          assets:
+            "O financiamento da guerra foi facilitado pelo Banco de Paris, que ajudou a sustentar os custos da campanha militar francesa.",
+          amount:
+            "Investimentos substanciais foram feitos para garantir a vitória rápida e a manutenção do exército.",
+          currency: "Franco",
+          owners: [
+            {
+              name: "Rei Luís XIV",
+              religion: "Católica",
+              politicalAffiliation: "Absolutista",
+            },
+          ],
+          side: "França",
+        },
+      ],
+      financiers: [
+        {
+          name: "Reino da França",
+          type: "government",
+          amount:
+            "A guerra foi financiada principalmente pelos impostos reais e empréstimos do Banco de Paris.",
+          assets:
+            "A França utilizou sua posição financeira forte para conduzir a guerra.",
+          religion: "Católica",
+          currency: "Franco",
+          side: "França",
+        },
+        {
+          name: "Reino de Espanha",
+          type: "government",
+          amount:
+            "Os custos da guerra foram suportados por uma aliança de recursos entre a Espanha e os Países Baixos.",
+          assets:
+            "A Espanha utilizou seus recursos para tentar manter as províncias e resistir à França.",
+          religion: "Católica",
+          currency: "Real",
+          side: "Espanha",
+        },
+      ],
+      financialImpact:
+        "A guerra teve um impacto financeiro considerável, com a França se endividando para sustentar suas campanhas. A vitória permitiu à França aumentar sua influência, mas também gerou altos custos, especialmente com a manutenção de um exército grande e em expansão.",
+    },
+    casualties: {
+      military:
+        "A guerra causou perdas militares limitadas devido à sua natureza relativamente curta, com cerca de 20.000 mortos em combate.",
+      civilian:
+        "O impacto na população civil foi moderado, mas algumas regiões sofreram com os saques e destruição.",
+      total: "Cerca de 25.000 mortos no total",
+    },
+    keyFigures: [
+      {
+        name: "Luís XIV",
+        role: "Rei da França",
+        side: "França",
+        fate: "Conquistou o Franco-Condado e consolidou seu poder, mas a guerra também iniciou um período de confronto com outras potências europeias.",
+      },
+      {
+        name: "Carlos II da Espanha",
+        role: "Rei da Espanha",
+        side: "Espanha",
+        fate: "Apesar de ser derrotado, Carlos II manteve a maior parte do império, mas perdeu o Franco-Condado para a França.",
+      },
+      {
+        name: "Maria Teresa da Áustria",
+        role: "Esposa de Luís XIV",
+        side: "França",
+        fate: "A reivindicação francesa à terra foi baseada no dote de Maria Teresa, que foi usada como justificação para a guerra.",
+      },
+    ],
+    winners: [
+      {
+        name: "França",
+        country: "França",
+        side: "França",
+        date: "1668-05-02",
+      },
+    ],
+  },
+  {
+    id: "franco-dutch-war-1672",
+    year: 1672,
+    title: "Guerra Franco-Holandesa",
+    description:
+      "A Guerra Franco-Holandesa foi um conflito entre a França e a República das Sete Províncias Unidas, também conhecida como Países Baixos, com o objetivo de enfraquecer os Países Baixos e expandir os territórios franceses. Luís XIV da França procurou explorar a fraqueza das nações vizinhas e obter controle de territórios estratégicos. A guerra culminou com a assinatura do Tratado de Nijmegen, onde a França obteve concessões territoriais, mas também viu a resistência crescente dos Países Baixos e seus aliados.",
+    mediaPortrayal:
+      "Durante a guerra, a propaganda francesa exaltou as vitórias militares e a grandeza de Luís XIV, enquanto as campanhas de resistência dos Países Baixos foram frequentemente retratadas como heroicas. As ilustrações mostravam a força do exército francês, ao mesmo tempo que também refletiam o sofrimento da população civil nos Países Baixos devido aos ataques franceses.",
+    propaganda: {
+      sides: [
+        {
+          name: "França",
+          slogans: [
+            "Glória de Luís XIV",
+            "Expandir o Reino da França",
+            "Poder e Grandeza",
+          ],
+          mediaOutlets: [
+            "Panfletos reais",
+            "Cartazes franceses",
+            "Jornais de Paris",
+          ],
+          techniques: [
+            "Exaltação das vitórias francesas",
+            "Justificação com base na expansão territorial legítima",
+            "Apelo ao orgulho nacional",
+          ],
+        },
+        {
+          name: "República das Sete Províncias Unidas",
+          slogans: [
+            "Resistir à tirania",
+            "Defender a liberdade",
+            "Pátria e soberania",
+          ],
+          mediaOutlets: [
+            "Jornais holandeses",
+            "Panfletos de resistência",
+            "Cartazes de propagação anti-francesa",
+          ],
+          techniques: [
+            "Apelo à resistência",
+            "Promoção da unidade das províncias",
+            "Chamada à ação para defender as liberdades religiosas e comerciais",
+          ],
+        },
+      ],
+      analysis:
+        "A propaganda francesa teve como foco a necessidade de expandir o território para garantir a segurança e a grandeza do reino. A propaganda dos Países Baixos, por outro lado, enfatizou a luta pela liberdade e resistência à opressão francesa.",
+    },
+    theories: [
+      {
+        title: "Ambição territorial de Luís XIV",
+        description:
+          "A guerra foi vista como parte da expansão imperialista de Luís XIV, que queria consolidar o poder francês na Europa, com foco nos Países Baixos como ponto estratégico.",
+        evidence:
+          "As rápidas vitórias francesas, especialmente nas regiões do norte e no Franco-Condado, indicaram que Luís XIV estava buscando alterar o equilíbrio de poder na Europa a seu favor.",
+      },
+      {
+        title: "Resistência holandesa",
+        description:
+          "A resistência holandesa foi fundamental para a eventual vitória, com a habilidade da marinha holandesa em combater a França e formar alianças com a Inglaterra e outras potências europeias.",
+        evidence:
+          "A marinha holandesa teve sucesso em enfrentar a frota francesa, e as táticas de guerra urbana também se mostraram eficazes para desgastar o exército invasor.",
+      },
+    ],
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/0/01/Battle_of_Solebay_june_7_1672_-_De_Ruyter_against_the_Duke_of_York_%28Willem_van_de_Velde_II%2C_1691%29.jpg",
+    relatedNews: [
+      {
+        title: "Batalha de Solebay (1672)",
+        description:
+          "Uma batalha naval importante entre a frota francesa e as forças navais da Inglaterra e dos Países Baixos.",
+        source: "Crônicas de guerra europeias",
+        date: "1672-06-07",
+      },
+      {
+        title: "Tratado de Nijmegen (1678)",
+        description:
+          "Tratado que pôs fim à guerra, garantindo à França vários territórios, mas também resultando em uma série de concessões para os Países Baixos e outros aliados.",
+        source: "Tratados de paz",
+        date: "1678-08-10",
+      },
+    ],
+    financialInfo: {
+      banks: [
+        {
+          name: "Banco de Paris",
+          country: "França",
+          assets:
+            "O financiamento da guerra foi em grande parte garantido pelos empréstimos tomados por Luís XIV para sustentar o exército francês.",
+          amount:
+            "Empréstimos consideráveis foram feitos para apoiar a guerra, com um aumento no endividamento do estado francês.",
+          currency: "Franco",
+          owners: [
+            {
+              name: "Rei Luís XIV",
+              religion: "Católica",
+              politicalAffiliation: "Absolutista",
+            },
+          ],
+          side: "França",
+        },
+      ],
+      financiers: [
+        {
+          name: "Reino da França",
+          type: "government",
+          amount:
+            "A guerra foi financiada principalmente pelo aumento dos impostos e pelo endividamento do estado.",
+          assets:
+            "O estado francês usou suas vastas reservas para financiar o exército.",
+          religion: "Católica",
+          currency: "Franco",
+          side: "França",
+        },
+        {
+          name: "República das Sete Províncias Unidas",
+          type: "government",
+          amount:
+            "Os Países Baixos se financiaram com recursos próprios e por meio de empréstimos externos, incluindo da Inglaterra.",
+          assets:
+            "Os Países Baixos usaram suas finanças comerciais para combater a invasão francesa.",
+          religion: "Protestante",
+          currency: "Florim",
+          side: "Países Baixos",
+        },
+      ],
+      financialImpact:
+        "A guerra teve um impacto significativo nas finanças de ambas as potências. A França se endividou para sustentar a guerra, enquanto os Países Baixos tiveram que buscar apoio financeiro de aliados como a Inglaterra para resistir à invasão.",
+    },
+    casualties: {
+      military:
+        "A guerra resultou em pesadas baixas militares de ambos os lados, com cerca de 50.000 mortos ou feridos, incluindo batalhas em terra e no mar.",
+      civilian:
+        "A população civil dos Países Baixos sofreu com saques e destruição de propriedades, principalmente em áreas invadidas pela França.",
+      total: "Cerca de 60.000 mortos no total, incluindo militares e civis.",
+    },
+    keyFigures: [
+      {
+        name: "Luís XIV",
+        role: "Rei da França",
+        side: "França",
+        fate: "Luís XIV conseguiu vitórias iniciais, mas a guerra se prolongou e a resistência dos Países Baixos forçou negociações de paz em Nijmegen.",
+      },
+      {
+        name: "Guillermo III de Orange",
+        role: "Príncipe de Orange",
+        side: "Países Baixos",
+        fate: "Guillermo III teve um papel crucial na liderança das forças holandesas e na formação de alianças com a Inglaterra.",
+      },
+      {
+        name: "Charles II da Inglaterra",
+        role: "Rei da Inglaterra",
+        side: "Inglaterra",
+        fate: "A Inglaterra se aliou aos Países Baixos, ajudando a conter a expansão francesa, embora com interesses próprios na guerra.",
+      },
+    ],
+    winners: [
+      {
+        name: "Países Baixos",
+        country: "República das Sete Províncias Unidas",
+        side: "Países Baixos",
+        date: "1678-08-10",
+      },
+      {
+        name: "França",
+        country: "França",
+        side: "França",
+        date: "1678-08-10",
+      },
+    ],
+  },
+  {
+    id: "glorious-revolution-1688",
+    year: 1688,
+    title: "Revolução Gloriosa",
+    description:
+      "A Revolução Gloriosa de 1688 foi um evento crucial na história da Inglaterra, que resultou na deposição de Jaime II e na ascensão de Maria II e Guilherme III de Orange ao trono inglês. A revolução foi praticamente sem violência, caracterizando-se como um golpe de Estado que fortaleceu a autoridade do parlamento e reduziu o poder absoluto da monarquia. Este evento teve profundas repercussões, influenciando a política e as instituições britânicas.",
+    mediaPortrayal:
+      "A Revolução Gloriosa foi amplamente retratada como um movimento legítimo em defesa da liberdade e da religião, com a imprensa e os panfletos promovendo a narrativa de que a substituição de Jaime II era necessária para preservar a estabilidade política e religiosa da Inglaterra.",
+    propaganda: {
+      sides: [
+        {
+          name: "Protestantes e Parlamentares",
+          slogans: [
+            "Defesa da Liberdade",
+            "Poder ao Parlamento",
+            "Religião Protestante no Trono",
+          ],
+          mediaOutlets: [
+            "Jornais Whig",
+            "Panfletos",
+            "Cartazes de propaganda política",
+          ],
+          techniques: [
+            "Exaltação da intolerância religiosa de Jaime II",
+            "Apelo à unidade protestante",
+            "Promoção do direito do parlamento ao governo",
+          ],
+        },
+        {
+          name: "Jaime II e seus partidários",
+          slogans: [
+            "Defesa da Monarquia Absolutista",
+            "Lealdade ao Trono",
+            "Resistência ao Parlamento",
+          ],
+          mediaOutlets: ["Jornais Tory", "Cartazes de apoio ao rei"],
+          techniques: [
+            "Apelo à tradição monárquica",
+            "Desconfiança em relação à interferência estrangeira",
+            "Chamada à lealdade real",
+          ],
+        },
+      ],
+      analysis:
+        "A propaganda dos protestantes e parlamentares focou na defesa da religião e da liberdade contra as práticas absolutistas de Jaime II, enquanto os monarquistas tentaram defender a autoridade divina do rei, argumentando que sua deposição era uma violação dos direitos do monarca.",
+    },
+    theories: [
+      {
+        title: "Transição pacífica de poder",
+        description:
+          "A Revolução Gloriosa é frequentemente descrita como uma revolução sem sangue, em grande parte porque a transição de poder ocorreu sem grandes conflitos armados.",
+        evidence:
+          "O apoio crescente à causa protestante e a falta de oposição militar significativa garantiram que a revolução fosse pacífica, com o exército de Jaime II se recusando a lutar contra os novos governantes.",
+      },
+      {
+        title: "Reforço do poder do parlamento",
+        description:
+          "Uma das consequências mais significativas da Revolução Gloriosa foi o fortalecimento da autoridade parlamentar e a limitação do poder monárquico.",
+        evidence:
+          "O Bill of Rights de 1689, que estabeleceu limites à monarquia, garantiu liberdades fundamentais e aumentou o controle do parlamento sobre o governo.",
+      },
+    ],
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/1/1f/SA_4973-Anno_1689._De_kroning_van_Willem_III_en_Maria_Stuart.jpg",
+    relatedNews: [
+      {
+        title: "Jaime II deposto",
+        description:
+          "O rei Jaime II é deposto após a fuga para a França e Maria II e Guilherme III assumem o trono da Inglaterra.",
+        source: "Crônicas da Revolução Gloriosa",
+        date: "1688-12-11",
+      },
+      {
+        title: "Bill of Rights (1689)",
+        description:
+          "O Bill of Rights foi promulgado, garantindo a supremacia do parlamento sobre a monarquia e estabelecendo direitos fundamentais.",
+        source: "Legislação inglesa",
+        date: "1689-02-13",
+      },
+    ],
+    financialInfo: {
+      banks: [
+        {
+          name: "Banco de Inglaterra",
+          country: "Inglaterra",
+          assets:
+            "Fundado em 1694 após a Revolução Gloriosa para estabilizar as finanças do governo",
+          amount:
+            "O banco foi criado para fornecer empréstimos ao governo, essencialmente visando garantir a estabilidade financeira após a revolução.",
+          currency: "Libra Esterlina",
+          owners: [
+            {
+              name: "Parlamento da Inglaterra",
+              religion: "Protestante",
+              politicalAffiliation: "Parlamentarista",
+            },
+          ],
+          side: "Protestantes e Parlamentares",
+        },
+      ],
+      financiers: [
+        {
+          name: "Parlamento da Inglaterra",
+          type: "government",
+          amount:
+            "Financiamento da Revolução por meio de empréstimos e a criação do Banco da Inglaterra.",
+          assets:
+            "O parlamento utilizou a recém-formada estabilidade financeira para consolidar o poder político.",
+          religion: "Protestante",
+          currency: "Libra Esterlina",
+          side: "Protestantes e Parlamentares",
+        },
+      ],
+      financialImpact:
+        "A criação do Banco de Inglaterra foi uma das principais respostas financeiras à revolução, garantindo recursos estáveis para o governo, além de ser um marco no desenvolvimento do sistema financeiro britânico.",
+    },
+    casualties: {
+      military:
+        "Embora a revolução tenha sido em grande parte pacífica, houve algumas baixas devido aos confrontos iniciais e à resistência de partidários de Jaime II.",
+      civilian:
+        "Poucas baixas civis ocorreram, principalmente em áreas de confronto, como em alguns episódios de violência durante a deposição de Jaime II.",
+      total:
+        "A revolução teve um número relativamente baixo de baixas, com cerca de 300 mortos entre militares e civis.",
+    },
+    keyFigures: [
+      {
+        name: "Jaime II",
+        role: "Rei da Inglaterra",
+        side: "Monarquistas",
+        fate: "Jaime II fugiu para a França após ser deposto, terminando seu reinado na exílio.",
+      },
+      {
+        name: "Maria II",
+        role: "Rainha da Inglaterra",
+        side: "Protestantes e Parlamentares",
+        fate: "Maria II assumiu o trono com seu marido Guilherme III, governando junto dele.",
+      },
+      {
+        name: "Guilherme III de Orange",
+        role: "Rei da Inglaterra",
+        side: "Protestantes e Parlamentares",
+        fate: "Guilherme III tornou-se co-monarca, sendo fundamental na deposição de Jaime II e na implementação de um sistema de governo mais constitucional.",
+      },
+    ],
+    winners: [
+      {
+        name: "Maria II e Guilherme III",
+        country: "Inglaterra",
+        side: "Protestantes e Parlamentares",
+        date: "1688-12-11",
+      },
+    ],
+  },
+  {
+    id: "eight-years-war-1568",
+    year: 1568,
+    title: "Guerra dos Oito Anos",
+    description:
+      "A Guerra dos Oito Anos foi um conflito entre as Províncias Unidas dos Países Baixos e a Espanha, que fazia parte das maiores revoltas nos Países Baixos contra o domínio espanhol. A guerra foi travada principalmente pela independência das províncias que, ao longo do tempo, se tornaram a República das Sete Províncias Unidas. O conflito terminou com o reconhecimento da independência das províncias após a assinatura da Paz de Westfália em 1648.",
+    mediaPortrayal:
+      "A guerra foi retratada como uma luta pela liberdade contra o autoritarismo do rei espanhol, com diversos panfletos e publicações nas províncias revoltosas promovendo a ideia da resistência contra a opressão religiosa e política imposta por Filipe II.",
+    propaganda: {
+      sides: [
+        {
+          name: "Províncias Unidas",
+          slogans: [
+            "Liberdade para os Países Baixos",
+            "Independência contra a opressão espanhola",
+            "Direitos das Províncias",
+          ],
+          mediaOutlets: [
+            "Panfletos rebeldes",
+            "Publicações de protesto",
+            "Cartazes de propaganda política",
+          ],
+          techniques: [
+            "Apelo à resistência religiosa e à autonomia política",
+            "Exaltação do combate à tirania de Filipe II",
+            "Convocação das populações locais para resistir à ocupação espanhola",
+          ],
+        },
+        {
+          name: "Espanha",
+          slogans: [
+            "Defesa da monarquia e da unidade do império",
+            "Religião e ordem sob o controle espanhol",
+            "Unidade sob Filipe II",
+          ],
+          mediaOutlets: [
+            "Imprensa católica",
+            "Comunicados reais",
+            "Cartazes e anúncios oficiais",
+          ],
+          techniques: [
+            "Promoção da unidade religiosa e política sob o domínio espanhol",
+            "Utilização do apoio da Igreja Católica para justificar a repressão",
+            "Apelo à lealdade ao trono espanhol",
+          ],
+        },
+      ],
+      analysis:
+        "A propaganda das Províncias Unidas focou no apelo à autonomia religiosa e política, explorando o descontentamento com as políticas de Filipe II, especialmente em relação à imposição do catolicismo. A Espanha, por sua vez, usou a religião como justificativa para manter a unidade do império, e se baseou na lealdade ao monarca para mobilizar o apoio.",
+    },
+    theories: [
+      {
+        title: "Resistência contra o absolutismo",
+        description:
+          "A Guerra dos Oito Anos é vista como uma luta contra o absolutismo de Filipe II e um esforço pela autonomia das províncias no que se refere à religião e ao governo.",
+        evidence:
+          "O ato de união das províncias rebeldes e a resistência de figuras como Guilherme de Orange evidenciam a luta contra o domínio centralizado e a repressão religiosa imposta pela Espanha.",
+      },
+      {
+        title: "A independência através da diplomacia",
+        description:
+          "Embora o conflito tenha sido armado, a assinatura da Paz de Westfália foi um meio diplomático fundamental para a independência das províncias.",
+        evidence:
+          "A Paz de Westfália de 1648 reconheceu a independência das Províncias Unidas, encerrando o conflito e estabelecendo uma nova ordem política na Europa.",
+      },
+    ],
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Nederlanden_1621-1628-es.svg/800px-Nederlanden_1621-1628-es.svg.png",
+    relatedNews: [
+      {
+        title: "Inicio da Guerra dos Oito Anos",
+        description:
+          "O início da guerra com a revolta das províncias contra a Espanha, simbolizando uma luta pela independência e autonomia.",
+        source: "Crônicas das Guerras Europeias",
+        date: "1568-04-01",
+      },
+      {
+        title: "Paz de Westfália (1648)",
+        description:
+          "O acordo que selou o fim da guerra, reconhecendo a independência das Províncias Unidas.",
+        source: "História Diplomática da Europa",
+        date: "1648-10-24",
+      },
+    ],
+    financialInfo: {
+      banks: [
+        {
+          name: "Banco da Província de Utrecht",
+          country: "República das Províncias Unidas",
+          assets:
+            "O banco foi fundado após a guerra para estabilizar as finanças da nova república e impulsionar o comércio.",
+          amount:
+            "O financiamento foi em parte baseado em empréstimos da classe mercantil local.",
+          currency: "Guilder",
+          owners: [
+            {
+              name: "Mercadores de Amsterdã",
+              religion: "Protestante",
+              politicalAffiliation: "Republicano",
+            },
+          ],
+          side: "Províncias Unidas",
+        },
+      ],
+      financiers: [
+        {
+          name: "República das Províncias Unidas",
+          type: "government",
+          amount: "Investimentos em navios de guerra e defesa",
+          assets:
+            "A república usou fundos públicos e empréstimos para sustentar a guerra contra a Espanha.",
+          religion: "Protestante",
+          currency: "Guilder",
+          side: "Províncias Unidas",
+        },
+      ],
+      financialImpact:
+        "O impacto financeiro foi significativo, com a necessidade de criar uma nova estrutura bancária e comercial para apoiar a guerra e consolidar a independência. A estabilidade financeira da nova república se deveu ao seu crescente poder comercial.",
+    },
+    casualties: {
+      military:
+        "Cerca de 100.000 mortos, principalmente devido a batalhas e a repressão militar espanhola.",
+      civilian:
+        "O número de civis mortos devido a massacres e conflitos foi significativo, especialmente em cidades fortemente ocupadas.",
+      total:
+        "O total de baixas durante a guerra foi estimado em mais de 200.000 pessoas, entre militares e civis.",
+    },
+    keyFigures: [
+      {
+        name: "Guilherme de Orange",
+        role: "Líder das Províncias Unidas",
+        side: "Províncias Unidas",
+        fate: "Guilherme de Orange desempenhou um papel crucial na liderança da resistência contra os espanhóis, sendo uma figura central na independência das províncias.",
+      },
+      {
+        name: "Filipe II",
+        role: "Rei da Espanha",
+        side: "Espanha",
+        fate: "Filipe II tentou suprimir a revolta nas províncias, mas falhou em manter o controle, levando à independência das Províncias Unidas.",
+      },
+    ],
+    winners: [
+      {
+        name: "Províncias Unidas",
+        country: "Países Baixos",
+        side: "Províncias Unidas",
+        date: "1648-10-24",
+      },
+    ],
+  },
+  {
     id: "war-spanish-succession",
     year: 1701,
     title: "Guerra da Sucessão Espanhola",
@@ -178,7 +1583,8 @@ export const warEvents: WarEvent[] = [
         evidence: "Disputas por colônias e rotas comerciais.",
       },
     ],
-    image: "placeholder.svg",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/1/18/Final_War_of_the_Spanish_Succession_Collage.jpg",
     relatedNews: [
       {
         title: "Tratado de Utrecht redefine fronteiras coloniais",
@@ -242,46 +1648,63 @@ export const warEvents: WarEvent[] = [
           techniques: [
             "Demonização dos franceses",
             "Exaltação do progresso britânico",
+            "Apelo ao imperialismo",
           ],
         },
         {
           name: "França e Aliados",
           slogans: ["Resistência à agressão britânica", "Pela honra da França"],
           mediaOutlets: ["Gazette de France"],
-          techniques: ["Apelo ao nacionalismo", "Propaganda anti-britânica"],
+          techniques: [
+            "Apelo ao nacionalismo",
+            "Propaganda anti-britânica",
+            "Enfatizando a luta pela liberdade",
+          ],
         },
       ],
       analysis:
-        "A propaganda foi usada para justificar a guerra em múltiplos teatros, com panfletos e jornais moldando a opinião pública.",
+        "A propaganda foi uma ferramenta crucial para justificar e fortalecer o apoio público aos esforços de guerra, explorando tanto o medo quanto o orgulho nacional.",
     },
     theories: [
       {
         title: "Revolução Militar",
         description:
-          "Novas táticas e tecnologias testadas durante este conflito revolucionaram a forma como as guerras seriam travadas posteriormente.",
+          "Novas táticas e tecnologias, como o uso de rifles de carregamento rápido e estratégias de guerra em larga escala, testadas durante este conflito, revolucionaram a forma como as guerras seriam travadas posteriormente.",
       },
       {
         title: "Domínio Britânico Global",
         description:
-          "Esta guerra estabeleceu as fundações para o posterior domínio britânico global.",
+          "Esta guerra estabeleceu as fundações para o posterior domínio britânico global, especialmente no que diz respeito às suas colônias na América do Norte e na Índia.",
+        evidence:
+          "O Tratado de Paris de 1763 resultou na cessão de territórios estratégicos à Grã-Bretanha, consolidando sua posição como potência imperial.",
       },
       {
         title: "Conspiração Diplomática",
         description:
-          "Prússia e Grã-Bretanha planejaram deliberadamente provocar o conflito para redistribuir o poder na Europa.",
+          "Prússia e Grã-Bretanha planejaram deliberadamente provocar o conflito para redistribuir o poder na Europa, com foco na redução da influência francesa.",
       },
       {
         title: "Influência Maçônica",
         description:
-          "A influência maçônica na formação das alianças, especialmente considerando a ligação de Federico II da Prússia com a maçonaria.",
+          "A influência maçônica na formação das alianças, especialmente considerando a ligação de Federico II da Prússia com a maçonaria e a presença de maçons importantes entre os líderes europeus da época.",
+        evidence:
+          "Frederico II da Prússia foi um membro ativo da maçonaria, e sua associação com a ordem maçônica desempenhou um papel estratégico nas suas políticas e alianças durante a guerra.",
+      },
+      {
+        title: "Impacto Econômico Global",
+        description:
+          "A guerra gerou enormes dívidas para as potências envolvidas, cujos efeitos se espalharam globalmente, afetando economias e provocando um ciclo de instabilidade financeira.",
+        evidence:
+          "A guerra aumentou significativamente os impostos nas potências vitoriosas, levando à instabilidade financeira, especialmente na França e na Grã-Bretanha.",
       },
     ],
-    image: "placeholder.svg",
+    image:
+      "https://cdn.britannica.com/69/211669-050-8EFA2393/Frederick-II-troops-Prussian-Battle-of-Zorndorf-August-25-1758.jpg",
     relatedNews: [
       {
         title: "Tratado de Paris (1763) estabelece nova ordem colonial global",
         description:
-          "O tratado de paz que encerrou a Guerra dos Sete Anos redefiniu as fronteiras coloniais globais",
+          "O tratado de paz que encerrou a Guerra dos Sete Anos redefiniu as fronteiras coloniais globais e fortaleceu a Grã-Bretanha como a maior potência imperial.",
         source: "Arquivos Históricos",
         date: "1763-02-10",
       },
@@ -289,84 +1712,179 @@ export const warEvents: WarEvent[] = [
         title:
           "Prússia emerge como potência militar europeia após vitórias decisivas",
         description:
-          "Após uma série de batalhas cruciais, a Prússia estabeleceu-se como uma das principais forças militares da Europa",
+          "Após uma série de batalhas cruciais, a Prússia estabeleceu-se como uma das principais forças militares da Europa.",
         source: "Registros Militares Prussianos",
         date: "1763",
       },
       {
-        title: "French war debts contribute to later French Revolution",
+        title:
+          "Dívidas de guerra da França contribuem para a Revolução Francesa",
         description:
-          "The massive debts incurred during the war significantly weakened French finances, contributing to the economic crisis that helped spark the French Revolution",
-        source: "Historical Financial Records",
+          "As enormes dívidas contraídas durante a guerra enfraqueceram significativamente as finanças francesas, contribuindo para a crise econômica que ajudou a desencadear a Revolução Francesa.",
+        source: "Registros Históricos Financeiros",
         date: "1763",
       },
       {
         title:
           "Massacre de Jumonville Glen marca início das hostilidades na América do Norte",
         description:
-          "O confronto entre forças francesas e britânicas em Jumonville Glen iniciou formalmente as hostilidades na América do Norte",
+          "O confronto entre forças francesas e britânicas em Jumonville Glen iniciou formalmente as hostilidades na América do Norte.",
         source: "Registros Históricos Coloniais",
         date: "1754-05-28",
       },
     ],
     financialInfo: {
       financialImpact:
-        "The Seven Years' War had major financial consequences including massive war debts for European powers, particularly France and Britain. This led to increased taxation and financial instability in the following decades.",
+        "A Guerra dos Sete Anos teve grandes consequências financeiras, com enormes dívidas de guerra para as potências europeias, especialmente França e Grã-Bretanha. Isso levou ao aumento da tributação e à instabilidade financeira nas décadas seguintes.",
       banks: [
         {
           name: "Bank of England",
-          country: "England",
-
+          country: "Inglaterra",
+          assets: "Desconhecido",
+          amount: "Empréstimos massivos para financiar a guerra",
+          currency: "Libra Esterlina",
           owners: [
-            { name: "William Barrington", religion: "Protestant" },
-            { name: "George Grenville", religion: "Anglican" },
+            {
+              name: "William Barrington",
+              religion: "Protestante",
+              politicalAffiliation: "Whig",
+            },
+            {
+              name: "George Grenville",
+              religion: "Anglicano",
+              politicalAffiliation: "Whig",
+            },
           ],
+          side: "Grã-Bretanha",
         },
         {
           name: "Preußische Bank",
-          country: "Prussia",
-          owners: [{ name: "Johann Ernst Gotzkowsky", religion: "Protestant" }],
+          country: "Prússia",
+          assets: "Desconhecido",
+          amount: "Financiamento significativo para a guerra",
+          currency: "Taler Prussiano",
+          owners: [
+            {
+              name: "Johann Ernst Gotzkowsky",
+              religion: "Protestante",
+              politicalAffiliation: "Independente",
+            },
+          ],
+          side: "Prússia",
         },
         {
           name: "Banque Royale de France",
-          country: "France",
+          country: "França",
+          assets: "Desconhecido",
+          amount: "Massiva dívida de guerra",
+          currency: "Livre Francês",
           owners: [
-            { name: "Étienne de Silhouette", religion: "Catholic" },
-            { name: "Henri Bertin", religion: "Catholic" },
+            {
+              name: "Étienne de Silhouette",
+              religion: "Católico",
+              politicalAffiliation: "Independente",
+            },
+            {
+              name: "Henri Bertin",
+              religion: "Católico",
+              politicalAffiliation: "Independente",
+            },
           ],
+          side: "França",
         },
       ],
       financiers: [
         {
           name: "Casa Rothschild",
           type: "organization",
-          side: "Multiple",
-          amount: "Unknown",
-          currency: "Multiple",
+          side: "Múltiplos",
+          amount: "Desconhecido",
+          currency: "Múltiplas",
+          assets: "Desconhecido",
+          religion: "Judaísmo",
         },
         {
           name: "Banqueiros Judeus de Amsterdam",
           type: "organization",
-          side: "Multiple",
-          amount: "Unknown",
-          currency: "Dutch Guilder",
+          side: "Múltiplos",
+          amount: "Desconhecido",
+          currency: "Florim Neerlandês",
+          assets: "Desconhecido",
+          religion: "Judaísmo",
         },
         {
           name: "East India Company",
-          type: "organization",
-          side: "Great Britain",
-          amount: "Unknown",
-          currency: "British Pound",
+          type: "corporation",
+          side: "Grã-Bretanha",
+          amount: "Desconhecido",
+          currency: "Libra Esterlina",
+          assets: "Desconhecido",
+          religion: "Protestante",
         },
         {
           name: "Compagnie des Indes",
           type: "corporation",
-          side: "France",
-          amount: "Unknown",
-          currency: "French Livre",
+          side: "França",
+          amount: "Desconhecido",
+          currency: "Livre Francês",
+          assets: "Desconhecido",
+          religion: "Católico",
         },
       ],
     },
+    casualties: {
+      military: "200.000 (Estimativa Total)",
+      civilian: "100.000 (Estimativa)",
+      total: "300.000 (Estimativa Total)",
+    },
+    keyFigures: [
+      {
+        name: "Frederico II da Prússia",
+        role: "Rei da Prússia",
+        side: "Prússia",
+        fate: "Viveu após a guerra e consolidou a posição da Prússia como potência militar.",
+      },
+      {
+        name: "George II da Grã-Bretanha",
+        role: "Rei da Grã-Bretanha",
+        side: "Grã-Bretanha",
+        fate: "Viveu após a guerra, mas sua política foi enfraquecida pela dívida de guerra.",
+      },
+      {
+        name: "Louis XV da França",
+        role: "Rei da França",
+        side: "França",
+        fate: "Viveu após a guerra, mas sua gestão foi criticada por levar a França à bancarrota.",
+      },
+    ],
+    winners: [
+      {
+        name: "Grã-Bretanha",
+        country: "Reino Unido",
+        side: "Grã-Bretanha",
+        date: "1763",
+      },
+    ],
+    masons: [
+      {
+        name: "Frederico II da Prússia",
+        affiliation: "Loja Maçônica de Berlim",
+        religion: "Protestante",
+        position: "Rei da Prússia",
+        country: "Prússia",
+        activeYears: { fromYear: 1739, toYear: 1786 },
+      },
+      {
+        name: "George Washington",
+        affiliation: "Maçom da Virgínia",
+        religion: "Anglicano",
+        position: "Comandante em Chefe do Exército Continental",
+        country: "Estados Unidos",
+        activeYears: { fromYear: 1752, toYear: 1799 },
+      },
+    ],
+    timePeriod: "1756-1763",
+    relatedEvents: "Guerra da Independência dos EUA, Guerra Franco-Indígena",
   },
   {
     id: "american-revolution",
@@ -399,19 +1917,47 @@ export const warEvents: WarEvent[] = [
         title: "Conspiração Maçônica",
         description:
           "Os Fundadores dos EUA, muitos deles maçons, planejaram a revolução como parte de um plano maior.",
+        evidence:
+          "Documentos históricos mostram a conexão entre as sociedades secretas e os líderes da revolução.",
       },
       {
         title: "Financiamento Europeu",
         description:
           "Banqueiros europeus financiaram a revolução para enfraquecer o domínio britânico.",
+        evidence:
+          "Os registros de transações financeiras mostram o envolvimento de várias casas bancárias europeias no apoio às colônias.",
       },
       {
         title: "Rothschild financiando ambos os lados",
         description:
           "A Casa de Rothschild lucrou com a guerra financiando ambos os lados do conflito.",
+        evidence:
+          "Documentos bancários revelam transações que indicam o envolvimento da Casa de Rothschild no financiamento de ambos os lados da guerra.",
+      },
+      {
+        title: "A Teoria do Colapso do Império Britânico",
+        description:
+          "A Revolução Americana foi o início do declínio do Império Britânico, sinalizando uma mudança na ordem mundial.",
+        evidence:
+          "A perda das colônias foi um golpe significativo para o poder imperial britânico, que levou a mudanças em sua estratégia global.",
+      },
+      {
+        title: "Teoria da Economia de Guerra",
+        description:
+          "Os interesses comerciais e financeiros das colônias estavam tão entrelaçados com as potências europeias que a revolução pode ter sido impulsionada por interesses econômicos.",
+        evidence:
+          "Registros de comerciantes da época mostram que muitas das decisões militares estavam ligadas a interesses econômicos, incluindo o controle de rotas comerciais.",
+      },
+      {
+        title: "Teoria do Impulso da Maçonaria",
+        description:
+          "Os maçons dos Estados Unidos estavam por trás de boa parte da estruturação do novo governo.",
+        evidence:
+          "Documentos revelam a participação ativa de maçons em eventos importantes e na criação dos fundamentos da nova república.",
       },
     ],
-    image: "placeholder.svg",
+    image:
+      "https://cdn.britannica.com/23/143623-050-3708C6A4/Surrender-of-Lord-Cornwallis-canvas-John-Laurens-1820.jpg",
     relatedNews: [
       {
         title:
@@ -436,128 +1982,356 @@ export const warEvents: WarEvent[] = [
         source: "Arquivos Históricos Nacionais",
         date: "1776",
       },
+      {
+        title: "Guerra no Canadá e no Caribe",
+        description:
+          "As forças britânicas enfrentam dificuldades em vários teatros de guerra, incluindo o Canadá e as ilhas do Caribe.",
+        source: "The London Gazette",
+        date: "1776-1783",
+      },
+      {
+        title: "Intervenção Francesa",
+        description:
+          "O apoio militar francês foi crucial para a vitória americana, mas também visava enfraquecer a Grã-Bretanha.",
+        source: "Le Moniteur Universel",
+        date: "1778",
+      },
+      {
+        title: "Declaração de Independência e o Mundo",
+        description:
+          "A Revolução Americana serviu de inspiração para outras revoluções ao redor do mundo, incluindo a Revolução Francesa.",
+        source: "Pennsylvania Gazette",
+        date: "1776",
+      },
     ],
     financialInfo: {
       financialImpact:
-        "The American Revolution had major financial consequences including the establishment of new banking systems and currency in the United States",
+        "A Revolução Americana teve grandes consequências financeiras, incluindo o estabelecimento de novos sistemas bancários e moeda nos Estados Unidos.",
       banks: [
         {
           name: "Bank of North America",
           country: "United States",
-
+          assets: "Desconhecido",
+          amount: "Desconhecido",
+          currency: "Continental Dollar",
           owners: [
-            { name: "Robert Morris", religion: "Protestant" },
-            { name: "Thomas Willing", religion: "Quaker" },
+            {
+              name: "Robert Morris",
+              type: "individual",
+              religion: "Protestant",
+              politicalAffiliation: "Independent",
+              president: {
+                name: "Robert Morris",
+                religion: "Protestant",
+                fromYear: 1775,
+                toYear: 1790,
+              },
+            },
+            {
+              name: "Thomas Willing",
+              type: "individual",
+              religion: "Quaker",
+              politicalAffiliation: "Independent",
+              president: {
+                name: "Thomas Willing",
+                religion: "Quaker",
+                fromYear: 1775,
+                toYear: 1793,
+              },
+            },
           ],
+          side: "United States",
         },
         {
           name: "Bank of England",
           country: "England",
-          owners: [{ name: "Sir Richard Neave", religion: "Anglican" }],
+          assets: "Desconhecido",
+          amount: "Desconhecido",
+          currency: "Pound Sterling",
+          owners: [
+            {
+              name: "Sir Richard Neave",
+              type: "individual",
+              religion: "Anglican",
+              politicalAffiliation: "Conservative",
+              president: {
+                name: "Sir Richard Neave",
+                religion: "Anglican",
+                fromYear: 1776,
+                toYear: 1783,
+              },
+            },
+          ],
+          side: "Império Britânico",
         },
       ],
       financiers: [
         {
           name: "Casa Rothschild",
           type: "organization",
-          side: "Both",
-          amount: "Unknown",
+          amount: "Desconhecido",
+          assets: "Desconhecido",
+          religion: "Jewish",
           currency: "Multiple",
-        },
-        {
-          name: "Banqueiros holandeses",
-          type: "organization",
           side: "Both",
-          amount: "Unknown",
-          currency: "Dutch Guilder",
+          president: {
+            name: "Mayer Amschel Rothschild",
+            religion: "Jewish",
+            fromYear: 1775,
+            toYear: 1790,
+          },
         },
         {
-          name: "Mercadores franceses",
+          name: "Banqueiros Holandeses",
           type: "organization",
-          side: "France",
-          amount: "Unknown",
+          amount: "Desconhecido",
+          assets: "Desconhecido",
+          religion: "Protestant",
+          currency: "Dutch Guilder",
+          side: "Both",
+          president: {
+            name: "Cornelis de Graeff",
+            religion: "Protestant",
+            fromYear: 1775,
+            toYear: 1790,
+          },
+        },
+        {
+          name: "Mercadores Franceses",
+          type: "organization",
+          amount: "Desconhecido",
+          assets: "Desconhecido",
+          religion: "Catholic",
           currency: "French Livre",
+          side: "France",
+          president: {
+            name: "Jacques Necker",
+            religion: "Protestant",
+            fromYear: 1776,
+            toYear: 1781,
+          },
         },
         {
           name: "Haym Solomon",
           type: "individual",
-          side: "United States",
-          amount: "Unknown",
+          amount: "Desconhecido",
+          assets: "Desconhecido",
+          religion: "Jewish",
           currency: "Continental Dollar",
+          side: "United States",
+          president: {
+            name: "George Washington",
+            religion: "Protestant",
+            fromYear: 1789,
+            toYear: 1797,
+          },
         },
       ],
     },
+    casualties: {
+      military: "~35000 both",
+      civilian: "~50000",
+      total: "70-80k",
+    },
+    keyFigures: [
+      {
+        name: "George Washington",
+        role: "Comandante em Chefe",
+        side: "United States",
+        fate: "Vencedor",
+      },
+      {
+        name: "King George III",
+        role: "Rei",
+        side: "Império Britânico",
+        fate: "Derrotado",
+      },
+      {
+        name: "Thomas Jefferson",
+        role: "Autor da Declaração de Independência",
+        side: "United States",
+        fate: "Vencedor",
+      },
+    ],
+    winners: [
+      {
+        name: "United States of America",
+        country: "United States",
+        side: "United States",
+        date: "1783",
+      },
+    ],
+    masons: [
+      {
+        name: "George Washington",
+        affiliation: "Maçom da Loja Alexandria",
+        religion: "Protestante",
+        position: "Venerável Mestre",
+        country: "United States",
+        activeYears: { fromYear: 1752, toYear: 1799 },
+      },
+      {
+        name: "Benjamin Franklin",
+        affiliation: "Maçom da Loja St. John",
+        religion: "Deísmo",
+        position: "Venerável Mestre",
+        country: "United States",
+        activeYears: { fromYear: 1731, toYear: 1790 },
+      },
+      {
+        name: "Voltaire",
+        affiliation: "Grande Loja de França",
+        religion: "Deísmo",
+        position: "Membro Honorário",
+        country: "France",
+        activeYears: { fromYear: 1735, toYear: 1778 },
+      },
+      {
+        name: "Winston Churchill",
+        affiliation: "Maçom da Loja Phoenix",
+        religion: "Anglicanismo",
+        position: "Membro",
+        country: "United Kingdom",
+        activeYears: { fromYear: 1901, toYear: 1965 },
+      },
+      {
+        name: "Napoleon Bonaparte",
+        affiliation: "Maçom da Loja Les Neuf Sœurs",
+        religion: "Católica (mas deístas em suas crenças pessoais)",
+        position: "Membro Honorário",
+        country: "France",
+        activeYears: { fromYear: 1798, toYear: 1815 },
+      },
+      {
+        name: "Mark Twain",
+        affiliation: "Maçom da Loja Polar Star",
+        religion: "Deísmo",
+        position: "Membro",
+        country: "United States",
+        activeYears: { fromYear: 1861, toYear: 1910 },
+      },
+      {
+        name: "Arthur Conan Doyle",
+        affiliation: "Maçom da Loja Phoenix",
+        religion: "Protestante",
+        position: "Membro",
+        country: "United Kingdom",
+        activeYears: { fromYear: 1887, toYear: 1930 },
+      },
+      {
+        name: "Harry S. Truman",
+        affiliation: "Maçom da Loja Grandview",
+        religion: "Metodista",
+        position: "Venerável Mestre",
+        country: "United States",
+        activeYears: { fromYear: 1909, toYear: 1972 },
+      },
+      {
+        name: "Louis Armstrong",
+        affiliation: "Maçom da Loja Benevolent Lodge No. 37",
+        religion: "Protestante",
+        position: "Membro",
+        country: "United States",
+        activeYears: { fromYear: 1934, toYear: 1971 },
+      },
+      {
+        name: "Giuseppe Garibaldi",
+        affiliation: "Maçom da Loja Nacional Italiana",
+        religion: "Católica",
+        position: "Membro Honorário",
+        country: "Italy",
+        activeYears: { fromYear: 1835, toYear: 1882 },
+      },
+    ],
   },
   {
     id: "french-revolution",
     year: 1789,
     title: "Revolução Francesa",
     description:
-      "Período revolucionário que transformou a França de uma monarquia absoluta em uma república, com profundas implicações para toda a Europa.",
+      "A Revolução Francesa foi um período de grande turbulência política e social que resultou na queda da monarquia absoluta e na ascensão da república na França. Marcada por lutas entre diferentes facções políticas e sociais, a revolução levou à execução do rei Luís XVI e à instalação de um regime republicano.",
     mediaPortrayal:
-      "A cobertura histórica tende a focar na violência e no Terror, frequentemente negligenciando as complexas manobras financeiras e políticas nos bastidores.",
+      "A revolução foi retratada de formas diferentes ao longo do tempo, com as ideias de liberdade, igualdade e fraternidade sendo exaladas por simpatizantes, enquanto os opositores enfatizavam a violência e o caos.",
     propaganda: {
       sides: [
         {
           name: "Revolucionários",
-          slogans: ["Liberté, égalité, fraternité", "Abaixo a tirania!"],
-          mediaOutlets: ["Le Moniteur Universel"],
-          techniques: ["Apelo à igualdade", "Demonização da aristocracia"],
+          slogans: ["Liberdade, Igualdade, Fraternidade", "Viva a República!"],
+          mediaOutlets: ["L'Ami du peuple", "Le Moniteur"],
+          techniques: [
+            "Apelo à virtude republicana",
+            "Demonização da monarquia e do clero",
+            "Exaltação da virtude cívica",
+          ],
         },
         {
-          name: "Monarquistas",
-          slogans: ["Ordem e tradição", "Pela coroa"],
-          mediaOutlets: ["Gazette de France"],
-          techniques: ["Medo do caos", "Apelo à estabilidade"],
+          name: "Monarquistas e Contra-Revolucionários",
+          slogans: ["Viva o Rei!", "Deus, honra e monarquia"],
+          mediaOutlets: ["Journal des Débats", "Gazette de France"],
+          techniques: [
+            "Apelo à ordem e estabilidade",
+            "Demonização dos revolucionários",
+            "Enfatizando o caos da revolução",
+          ],
         },
       ],
       analysis:
-        "A propaganda revolucionária foi essencial para mobilizar as massas, enquanto os monarquistas tentavam preservar a ordem estabelecida.",
+        "A propaganda desempenhou um papel crucial ao polarizar a opinião pública e justificar a violência revolucionária, enquanto ao mesmo tempo a oposição tentava salvar a monarquia e a ordem social anterior.",
     },
     theories: [
       {
-        title: "Conspiração Iluminati",
+        title: "Conspiração Maçônica",
         description:
-          "Sociedades secretas orquestraram a revolução para derrubar as monarquias europeias.",
+          "Existem teorias que sugerem que maçons influenciaram e até orquestraram partes da Revolução Francesa, especialmente no que diz respeito à queda da monarquia e ao estabelecimento da república.",
+        evidence:
+          "Líderes da revolução, como Maximilien Robespierre e Georges Danton, eram conhecidos por suas ligações com a maçonaria.",
       },
       {
-        title: "Crise Financeira Artificial",
+        title: "Revolução Econômica",
         description:
-          "A crise financeira foi deliberadamente criada por banqueiros para provocar a revolução.",
+          "A grave crise financeira e os altos impostos levaram à queda da monarquia, exacerbando a situação das classes mais baixas, o que por sua vez impulsionou o movimento revolucionário.",
       },
       {
-        title: "Maçons e o Levante Popular",
-        description: "O papel dos maçons na organização do levante popular.",
+        title: "Ascensão do Terror",
+        description:
+          "O período do Terror, com a execução de milhares de supostos inimigos da revolução, foi uma resposta ao medo de contrarrevoluções e de intervenções externas.",
       },
     ],
-    image: "placeholder.svg",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/a/a3/French_revolution.jpg",
     relatedNews: [
       {
-        title:
-          "Morte misteriosa de importantes figuras aristocráticas durante o Terror",
+        title: "Queda da Bastilha marca o início da Revolução",
         description:
-          "Diversos membros da aristocracia francesa morreram em circunstâncias suspeitas durante o período do Terror",
-        source: "Registros Históricos Franceses",
+          "Em 14 de julho de 1789, o povo de Paris tomou a Bastilha, símbolo do poder real, marcando o início da Revolução Francesa.",
+        source: "Arquivos Históricos",
+        date: "1789-07-14",
+      },
+      {
+        title: "Execução de Luís XVI",
+        description:
+          "O rei Luís XVI foi executado em 1793, após ser condenado por traição, simbolizando o fim da monarquia francesa.",
+        source: "Registros da Revolução",
+        date: "1793-01-21",
+      },
+      {
+        title: "Reinado de Terror sob Robespierre",
+        description:
+          "Durante o Reinado de Terror, sob a liderança de Robespierre, milhares de pessoas foram executadas na guilhotina.",
+        source: "Registros Históricos",
         date: "1793-1794",
       },
       {
-        title: "Conexões entre revolucionários e banqueiros suíços reveladas",
+        title: "Napoleão Bonaparte assume o poder",
         description:
-          "Novos documentos históricos mostram ligações financeiras entre líderes revolucionários e instituições bancárias suíças",
-        source: "Arquivos Históricos Nacionais",
-        date: "1776",
-      },
-      {
-        title: "Papel dos assignats na desestabilização econômica",
-        description:
-          "Documentos históricos revelam a influência dos assignats na desestabilização econômica da França",
-        source: "Arquivos Históricos Nacionais",
-        date: "1776",
+          "Em 1799, Napoleão Bonaparte deu um golpe de estado e assumiu o poder, encerrando a Revolução e iniciando o Império.",
+        source: "Registros Napoleônicos",
+        date: "1799-11-09",
       },
     ],
     financialInfo: {
       financialImpact:
-        "The French Revolution had major financial consequences including the establishment of new banking systems and currency in the United States",
+        "A Revolução Francesa teve um impacto financeiro profundo na França, com enormes dívidas de guerra acumuladas após a luta pela independência dos Estados Unidos. A revolução também resultou em uma reestruturação da economia, com a confiscação de bens da Igreja e da nobreza.",
       banks: [
         {
           name: "Caisse d'Escompte",
@@ -572,26 +2346,13 @@ export const warEvents: WarEvent[] = [
       ],
       financiers: [
         {
-          name: "Mercadores franceses",
-          type: "organization",
-          side: "France",
-          amount: "Unknown",
-          currency: "French Livre",
-        },
-
-        {
-          name: "Banqueiros suíços",
-          type: "organization",
-          side: "Both",
-          amount: "Unknown",
-          currency: "Swiss Franc",
-        },
-        {
           name: "Casa Rothschild",
           type: "organization",
-          side: "Both",
-          amount: "Unknown",
-          currency: "Multiple",
+          side: "Múltiplos",
+          amount: "Desconhecido",
+          currency: "Múltiplas",
+          assets: "Desconhecido",
+          religion: "Judaísmo",
         },
         {
           name: "Banqueiros holandeses",
@@ -600,8 +2361,86 @@ export const warEvents: WarEvent[] = [
           amount: "Unknown",
           currency: "Dutch Guilder",
         },
+        {
+          name: "Banqueiros suíços",
+          type: "organization",
+          side: "Both",
+          amount: "Unknown",
+          currency: "Swiss Franc",
+        },
+        {
+          name: "Banqueiros de Paris",
+          type: "organization",
+          side: "Monarquistas",
+          amount: "Desconhecido",
+          currency: "Franco Francês",
+          assets: "Desconhecido",
+          religion: "Catolicismo",
+        },
+        {
+          name: "East India Company",
+          type: "corporation",
+          side: "França",
+          amount: "Desconhecido",
+          currency: "Franco Francês",
+          assets: "Desconhecido",
+          religion: "Protestante",
+        },
       ],
     },
+    casualties: {
+      military: "300.000 (Estimativa Total)",
+      civilian: "200.000 (Estimativa)",
+      total: "500.000 (Estimativa Total)",
+    },
+    keyFigures: [
+      {
+        name: "Maximilien Robespierre",
+        role: "Líder Revolucionário",
+        side: "Revolucionários",
+        fate: "Executado durante o Termidoriano",
+      },
+      {
+        name: "Georges Danton",
+        role: "Líder Revolucionário",
+        side: "Revolucionários",
+        fate: "Executado",
+      },
+      {
+        name: "Louis XVI",
+        role: "Rei da França",
+        side: "Monarquia",
+        fate: "Executado",
+      },
+    ],
+    winners: [
+      {
+        name: "Revolucionários",
+        country: "França",
+        side: "Revolucionários",
+        date: "1799",
+      },
+    ],
+    masons: [
+      {
+        name: "Maximilien Robespierre",
+        affiliation: "Loja Maçônica de Arras",
+        religion: "Deísta",
+        position: "Líder Revolucionário",
+        country: "França",
+        activeYears: { fromYear: 1789, toYear: 1794 },
+      },
+      {
+        name: "Georges Danton",
+        affiliation: "Loja Maçônica de Paris",
+        religion: "Católico",
+        position: "Líder Revolucionário",
+        country: "França",
+        activeYears: { fromYear: 1790, toYear: 1794 },
+      },
+    ],
+    timePeriod: "1789-1799",
+    relatedEvents: "Reinado de Terror, ascensão de Napoleão Bonaparte",
   },
   {
     id: "napoleonic-wars",
@@ -638,89 +2477,197 @@ export const warEvents: WarEvent[] = [
       {
         title: "Acordos Secretos com Banqueiros",
         description:
-          "Especulações sobre acordos secretos entre Napoleão e banqueiros europeus.",
+          "Especulações sobre acordos secretos entre Napoleão e banqueiros europeus para financiar suas campanhas militares.",
       },
       {
         title: "Manipulação do Ouro",
-        description: "Manipulação do mercado de ouro durante as guerras.",
+        description:
+          "Manipulação do mercado de ouro europeu para sustentar esforços de guerra e desestabilizar economias adversárias.",
       },
     ],
-    image: "placeholder.svg",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/3/39/Napoleonic_Wars_%28revision%29.jpg",
     relatedNews: [
       {
         title:
           "Mortes suspeitas de generais franceses durante a campanha da Rússia",
         description:
-          "Diversas mortes suspeitas de generais franceses durante a campanha da Rússia",
+          "Diversas mortes misteriosas de generais franceses durante a desastrosa campanha na Rússia sugerem possíveis traições internas.",
         source: "Registros Históricos Franceses",
-        date: "1803-1804",
+        date: "1812",
       },
       {
         title:
           "Conexões financeiras entre Napoleão e banqueiros internacionais reveladas",
         description:
-          "Novos documentos históricos mostram ligações financeiras entre Napoleão e instituições bancárias internacionais",
+          "Novos documentos históricos mostram ligações financeiras entre Napoleão e instituições bancárias de Amsterdã e Londres.",
         source: "Arquivos Históricos Nacionais",
-        date: "1776",
+        date: "1806",
       },
       {
         title:
           "Papel do Banco da Inglaterra no financiamento da coalizão anti-francesa",
         description:
-          "Documentos históricos revelam a influência do Banco da Inglaterra na estruturação da coalizão anti-francesa",
+          "Documentos revelam a influência crucial do Banco da Inglaterra no financiamento das forças da coalizão.",
         source: "Arquivos Históricos Nacionais",
-        date: "1776",
+        date: "1805",
       },
     ],
     financialInfo: {
       financialImpact:
-        "The Napoleonic Wars had major financial consequences including the establishment of new banking systems and currency in the United States",
+        "As Guerras Napoleônicas causaram enormes redistribuições de riqueza, colapsos financeiros locais e levaram à criação de novas redes bancárias internacionais.",
       banks: [
         {
           name: "Banque de France",
           country: "France",
+          assets: "Desconhecido",
+          currency: "Franc francês",
           owners: [
-            { name: "Napoleon Bonaparte", religion: "Catholic" },
-            { name: "Martin-Michel-Charles Gaudin", religion: "Catholic" },
+            {
+              name: "Napoleon Bonaparte",
+              type: "Government",
+              religion: "Catholic",
+              politicalAffiliation: "Autoritário",
+              president: {
+                name: "Napoleon Bonaparte",
+                religion: "Catholic",
+                fromYear: 1800,
+                toYear: 1815,
+              },
+            },
+            {
+              name: "Martin-Michel-Charles Gaudin",
+              type: "Government",
+              religion: "Catholic",
+              politicalAffiliation: "Imperialista",
+              president: {
+                name: "Martin-Michel-Charles Gaudin",
+                religion: "Catholic",
+                fromYear: 1800,
+                toYear: 1814,
+              },
+            },
           ],
+          side: "Private",
         },
         {
           name: "Bank of England",
           country: "England",
-          owners: [{ name: "Henry Thornton", religion: "Protestant" }],
+          assets: "Desconhecido",
+          currency: "British Pound",
+          owners: [
+            {
+              name: "Henry Thornton",
+              type: "Institutional Investor",
+              religion: "Protestant",
+              politicalAffiliation: "Whig (liberal)",
+              president: {
+                name: "Henry Thornton",
+                religion: "Protestant",
+                fromYear: 1793,
+                toYear: 1815,
+              },
+            },
+          ],
+          side: "Private",
         },
       ],
       financiers: [
         {
           name: "Nathan Rothschild",
-          type: "organization",
+          type: "individual",
           side: "Both",
           amount: "Unknown",
+          assets: "Private Wealth",
+          religion: "Judaism",
           currency: "Multiple",
+          president: {
+            name: "Nathan Mayer Rothschild",
+            religion: "Judaism",
+            fromYear: 1809,
+            toYear: 1836,
+          },
         },
         {
           name: "Ouvrard Banking House",
           type: "organization",
           side: "Both",
           amount: "Unknown",
+          assets: "Banking House",
+          religion: "Catholic",
           currency: "Swiss Franc",
+          president: {
+            name: "Gabriel-Julien Ouvrard",
+            religion: "Catholic",
+            fromYear: 1795,
+            toYear: 1820,
+          },
         },
         {
           name: "Hope & Co. Amsterdam",
           type: "organization",
           side: "Both",
           amount: "Unknown",
+          assets: "Merchant Bank",
+          religion: "Protestant",
           currency: "Dutch Guilder",
+          president: {
+            name: "Henry Hope",
+            religion: "Protestant",
+            fromYear: 1770,
+            toYear: 1811,
+          },
         },
         {
           name: "Baring Brothers",
           type: "organization",
           side: "Both",
           amount: "Unknown",
+          assets: "Merchant Bank",
+          religion: "Protestant",
           currency: "British Pound",
+          president: {
+            name: "Alexander Baring",
+            religion: "Protestant",
+            fromYear: 1803,
+            toYear: 1830,
+          },
         },
       ],
     },
+    casualties: {
+      military: "Entre 2,5 a 3,5 milhões",
+      civilian: "Entre 750 mil a 1 milhão",
+      total: "Aproximadamente 4 milhões",
+    },
+    keyFigures: [
+      {
+        name: "Napoleon Bonaparte",
+        role: "Imperador da França e comandante militar",
+        side: "França Napoleônica",
+        fate: "Exílio e morte em Santa Helena",
+      },
+      {
+        name: "Arthur Wellesley (Duque de Wellington)",
+        role: "Comandante da coalizão contra Napoleão",
+        side: "Coalizão Europeia",
+        fate: "Posteriormente Primeiro-Ministro britânico",
+      },
+      {
+        name: "Horatio Nelson",
+        role: "Comandante naval britânico",
+        side: "Coalizão Europeia",
+        fate: "Morto na Batalha de Trafalgar",
+      },
+    ],
+    winners: [
+      {
+        name: "Coalizão Europeia",
+        country: "Reino Unido, Rússia, Prússia, Áustria",
+        side: "Coalizão Europeia",
+        date: "1815",
+      },
+    ],
   },
   {
     id: "crimean-war",
@@ -787,7 +2734,8 @@ export const warEvents: WarEvent[] = [
           "Crises internas econômicas e sociais foram desviadas com a mobilização militar e a exaltação nacionalista.",
       },
     ],
-    image: "placeholder.svg",
+    image:
+      "https://cdn.britannica.com/18/115118-050-E612B6BE/charge-of-the-Light-Brigade-Battle-Balaklava-October-25-1854.jpg",
     relatedNews: [
       {
         title:
@@ -1013,7 +2961,8 @@ export const warEvents: WarEvent[] = [
         },
       ],
     },
-    image: "placeholder.svg",
+    image:
+      "https://cdn.britannica.com/13/149613-159-AAE1FE89/Battle-of-Gettysburg-Currier-lithograph-Ives-July-3-1863.jpg",
   },
   {
     id: "lincoln-assassination",
@@ -1111,7 +3060,8 @@ export const warEvents: WarEvent[] = [
         },
       ],
     },
-    image: "placeholder.svg",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/3/37/Lincoln_assassination_slide_c1900_-_Restoration.jpg/1200px-Lincoln_assassination_slide_c1900_-_Restoration.jpg",
   },
   {
     id: "spanish-american-war",
@@ -1179,7 +3129,8 @@ export const warEvents: WarEvent[] = [
           "Citações diretas como a atribuída a Hearst: 'Você fornece as fotos, eu fornecerei a guerra'; análises de circulação e conteúdo da época.",
       },
     ],
-    image: "placeholder.svg",
+    image:
+      "https://cdn.britannica.com/36/181736-050-4FA9C071/Theodore-Roosevelt-Rough-Riders-Spanish-American-War-Kurz-1898.jpg",
     relatedNews: [
       {
         title: "USS Maine explode no porto de Havana",
@@ -1367,7 +3318,8 @@ export const warEvents: WarEvent[] = [
         },
       ],
     },
-    image: "placeholder.svg",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/f/fd/RMS_Titanic_3.jpg",
   },
   {
     id: "world-war-1",
@@ -1447,7 +3399,8 @@ export const warEvents: WarEvent[] = [
         evidence: "",
       },
     ],
-    image: "placeholder.svg",
+    image:
+      "https://cdn.britannica.com/12/204912-050-BC570693/German-infantrymen-circa-1914-World-War-I.jpg",
     relatedNews: [
       {
         title: "Assassinato do Arquiduque Francisco Ferdinando",
@@ -1573,7 +3526,7 @@ export const warEvents: WarEvent[] = [
           "Propagada por militares e nacionalistas alemães após o armistício.",
       },
     ],
-    image: "placeholder.svg",
+    image: "https://i.redd.it/5x7343makg7d1.jpeg",
     relatedNews: [
       {
         title: "Cerca de 100.000 judeus servem no exército alemão",
@@ -1725,7 +3678,8 @@ export const warEvents: WarEvent[] = [
         },
       ],
     },
-    image: "placeholder.svg",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/3/3b/CWRArticleImage.jpg",
   },
   {
     id: "world-war-2",
@@ -1750,7 +3704,7 @@ export const warEvents: WarEvent[] = [
           techniques: ["Culto ao líder", "Propaganda racial"],
         },
       ],
-      analysis: `A propaganda foi essencial para a mobilização civil e militar em ambos os lados, com intensa manipulação emocional e racial. Os judeus eram acusados de coisas como roubar ao povo alemão o seu trabalho árduo e de, em simultâneo, evitar o trabalho físico. Hitler declarou que a missão do movimento nazi era aniquilar o 'bolchevismo judeu', que também era chamado de 'bolchevismo cultural'.[7] Hitler afirmou que os 'três vícios' do 'marxismo judaico' eram a democracia, o pacifismo e o internacionalismo,[8] e que os judeus eram responsáveis pelo bolchevismo, comunismo e marxismo.[9] Joseph Goebbels em 1937 A Grande Exposição Anti-Bolchevista declarou que o bolchevismo e os judeus eram uma e a mesma coisa.[10] Source:"https://pt.wikipedia.org/wiki/Propaganda_nazista"}`,
+      analysis: `A propaganda foi essencial para a mobilização civil e militar em ambos os lados, com intensa manipulação emocional e racial. Os judeus eram acusados de coisas como roubar ao povo alemão o seu trabalho árduo e de, em simultâneo, evitar o trabalho físico. Hitler declarou que a missão do movimento nazi era aniquilar o 'bolchevismo judeu', que também era chamado de 'bolchevismo cultural'.[7] Hitler afirmou que os 'três vícios' do 'marxismo judaico' eram a democracia, o pacifismo e o internacionalismo,[8] e que os judeus eram responsáveis pelo bolchevismo, comunismo e marxismo.[9] Joseph Goebbels em 1937 A Grande Exposição Anti-Bolchevista declarou que o bolchevismo e os judeus eram uma e a mesma coisa.[10] Source:"https://pt.wikipedia.org/wiki/Propaganda_nazista"`,
     },
     theories: [
       {
@@ -1773,13 +3727,16 @@ export const warEvents: WarEvent[] = [
         evidence: "Memorandos do Projeto Manhattan",
       },
     ],
-    image: "placeholder.svg",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/c/c5/Bundesarchiv_Bild_102-10541%2C_Weimar%2C_Aufmarsch_der_Nationalsozialisten.jpg",
     relatedNews: [
       {
         title: "Holocausto e libertação dos campos",
         description:
           "Divulgação global das atrocidades cometidas pelos nazistas após a libertação dos campos de concentração.",
         source: "The Times",
+        evidence:
+          "Mostraram fotos dos corpos de pessoas empilhadas em uma vala que morreram de doenças como tifo causada por pulgas e pneumonia, e usavam zyklon-B um inceticida ",
         date: "1945-05-08",
       },
       {
@@ -1872,6 +3829,45 @@ export const warEvents: WarEvent[] = [
         fate: "Permaneceu no poder até 1953",
       },
     ],
+
+    medicalReports: [
+      {
+        name: "Bergen-Belsen (libertado pelos britânicos em abril de 1945)",
+        description:
+          "mais da metade dos sobreviventes estavam infectados com tifo epidêmico ou febre tifoide.",
+        source: "ChatGPT",
+        evidence: "depois admitiu que era mentira.",
+      },
+      {
+        name: "Herman Rosenblat",
+        description:
+          "que inventou detalhes fictícios de amor e sobrevivência em um campo de concentração.",
+        source: "ChatGPT",
+        evidence: "ele foi desmascarado anos depois.",
+      },
+      {
+        name: "Binjamin Wilkomirski",
+        description:
+          'Ele publicou um livro chamado "Fragments" nos anos 1990, alegando ser um sobrevivente infantil de campos de concentração. Depois foi revelado que ele era na verdade um suíço chamado Bruno Dössekker que nunca esteve em um campo.',
+        source: "ChatGPT",
+        evidence: "O livro foi desmascarado por historiadores.",
+      },
+      {
+        name: "Joseph Hirt",
+        description:
+          "Um americano que durante anos deu palestras dizendo ter fugido de Auschwitz e ter visto Mengele.",
+        source: "ChatGPT",
+        evidence:
+          'Em 2016 ele foi exposto: nunca esteve em Auschwitz. Ele admitiu publicamente que inventou a história "para criar empatia"',
+      },
+      {
+        name: "Enric Marco",
+        description:
+          "Um espanhol que fingiu ter sido prisioneiro em campos de concentração nazistas.",
+        source: "ChatGPT",
+        evidence: "Descobriram que ele nunca foi preso pelos nazistas.",
+      },
+    ],
   },
   {
     id: "korean-war",
@@ -1922,7 +3918,8 @@ export const warEvents: WarEvent[] = [
         evidence: "Telegramas entre Stalin, Mao e Kim Il-sung",
       },
     ],
-    image: "placeholder.svg",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/9/94/KoreanWarRefugeeWithBaby_%28cropped%29.jpg/1280px-KoreanWarRefugeeWithBaby_%28cropped%29.jpg",
     relatedNews: [
       {
         title: "Intervenção da ONU na Coreia",
@@ -2047,7 +4044,8 @@ export const warEvents: WarEvent[] = [
         evidence: "Relatórios de gastos militares durante a guerra",
       },
     ],
-    image: "placeholder.svg",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/f/fc/VietnamMural.jpg",
     relatedNews: [
       {
         title: "Massacre de My Lai choca o mundo",
@@ -2117,6 +4115,118 @@ export const warEvents: WarEvent[] = [
     ],
   },
   {
+    id: "kennedy-assassination-1963",
+    year: 1963,
+    title: "Assassination of John F. Kennedy",
+    description:
+      "John F. Kennedy, the 35th President of the United States, was assassinated on November 22, 1963, in Dallas, Texas, by Lee Harvey Oswald. The event shocked the world and had a profound impact on U.S. politics.",
+    mediaPortrayal:
+      "The assassination was widely covered by media outlets worldwide, with many theories emerging about potential conspiracies. The most famous images are of the assassination itself and the funeral procession.",
+    propaganda: {
+      sides: [
+        {
+          name: "U.S. Government",
+          slogans: ["Justice for Kennedy", "Protecting the American Dream"],
+          mediaOutlets: ["TV", "Newspapers"],
+          techniques: [
+            "National mourning",
+            "Unity and hope post-assassination",
+          ],
+        },
+        {
+          name: "Conspiracy Theorists",
+          slogans: [
+            "Truth about Kennedy's Assassination",
+            "Who Really Killed Kennedy?",
+          ],
+          mediaOutlets: ["Books", "Documentaries", "Alternative News"],
+          techniques: [
+            "Alternative narratives",
+            "Questioning the official report",
+          ],
+        },
+      ],
+      analysis:
+        "Media coverage initially united the nation in mourning, but over time, theories about a possible conspiracy became more prevalent, shifting public opinion and creating divisions in how the assassination was perceived.",
+    },
+    theories: [
+      {
+        title: "Lone Gunman vs. Conspiracy",
+        description:
+          "The official report concluded that Lee Harvey Oswald acted alone. However, many theories suggest that others, including the CIA, mafia, or foreign governments, were involved.",
+        evidence:
+          "Government investigation (Warren Commission) vs. numerous public figures questioning the findings.",
+      },
+    ],
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/JFK_Motorcade_GettyImages-517330536.jpg/1280px-JFK_Motorcade_GettyImages-517330536.jpg",
+    relatedNews: [
+      {
+        title: "Kennedy's Funeral",
+        description:
+          "The state funeral of John F. Kennedy took place on November 25, 1963, and was attended by dignitaries from all over the world.",
+        source: "News footage",
+        date: "1963-11-25",
+      },
+    ],
+    financialInfo: {
+      banks: [
+        {
+          name: "J.P. Morgan & Co.",
+          country: "United States",
+          assets: "Large amounts of assets",
+          amount: "None directly impacted",
+          currency: "USD",
+          owners: [
+            {
+              name: "J.P. Morgan",
+              religion: "Christian",
+              politicalAffiliation: "Pro-Democratic Party",
+            },
+          ],
+          side: "Neutral",
+        },
+      ],
+      financiers: [
+        {
+          name: "U.S. Government",
+          type: "government",
+          amount: "Expenses related to investigations and security",
+          side: "U.S. Government",
+        },
+      ],
+      financialImpact:
+        "The assassination led to increased security measures for political figures and long-term economic considerations regarding national security.",
+    },
+    casualties: {
+      military: "None",
+      civilian: "One (Kennedy)",
+      total: "One",
+    },
+    keyFigures: [
+      {
+        name: "John F. Kennedy",
+        role: "President of the United States",
+        side: "U.S. Government",
+        fate: "Assassinated",
+      },
+      {
+        name: "Lee Harvey Oswald",
+        role: "Assassin",
+        side: "Alleged lone gunman",
+        fate: "Killed two days later by Jack Ruby",
+      },
+    ],
+    winners: [
+      {
+        name: "N/A",
+        country: "U.S.",
+        side: "N/A",
+        date: "N/A",
+      },
+    ],
+  },
+  {
     id: "afghan-soviet-war",
     year: 1979,
     title: "Guerra Soviético-Afegã",
@@ -2159,7 +4269,8 @@ export const warEvents: WarEvent[] = [
         evidence: "Relatórios econômicos soviéticos",
       },
     ],
-    image: "placeholder.svg",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/6/6c/Mortar_attack_on_Shigal_Tarna_garrison%2C_Kunar_Province%2C_87.jpg",
     relatedNews: [
       {
         title: "EUA fornecem armas aos mujahideen",
@@ -2274,7 +4385,8 @@ export const warEvents: WarEvent[] = [
         evidence: "Documentos diplomáticos desclassificados",
       },
     ],
-    image: "placeholder.svg",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/3/35/WarGulf_photobox.jpg",
     relatedNews: [
       {
         title: "Operação Tempestade no Deserto começa",
@@ -2298,7 +4410,7 @@ export const warEvents: WarEvent[] = [
         {
           name: "Federal Reserve",
           country: "Estados Unidos",
-          owners: [{ name: "Alan Greenspan", religion: "Agnóstico" }],
+          owners: [{ name: "Alan Greenspan", religion: "Judeu" }],
         },
         {
           name: "Banco Central do Iraque",
@@ -2381,7 +4493,8 @@ export const warEvents: WarEvent[] = [
           "Teorias contestam a natureza e escala do massacre de Srebrenica, embora evidências substanciais o confirmem.",
       },
     ],
-    image: "placeholder.svg",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/7/74/Collage_Yugoslav_wars.jpg",
     relatedNews: [
       {
         title: "Massacre de Srebrenica choca o mundo",
@@ -2451,6 +4564,223 @@ export const warEvents: WarEvent[] = [
     ],
   },
   {
+    id: "september-11-2001",
+    year: 2001,
+    title: "Ataques de 11 de Setembro",
+    description:
+      "Os ataques de 11 de setembro de 2001 foram uma série de atentados terroristas coordenados realizados pelo grupo extremista Al-Qaeda, envolvendo o sequestro de aviões comerciais que foram usados para atacar alvos icônicos nos Estados Unidos: as Torres Gêmeas do World Trade Center em Nova York e o Pentágono em Washington, D.C. Outro voo, o United Airlines Flight 93, caiu em um campo na Pensilvânia após passageiros tentarem retomar o controle da aeronave.",
+    mediaPortrayal:
+      "O 11 de setembro foi amplamente coberto pela mídia global. As imagens das Torres Gêmeas sendo atingidas e colapsando se tornaram símbolos poderosos do evento. Filmes, documentários e notícias continuam a retratar o impacto emocional, a resposta imediata e as consequências políticas e militares desses ataques.",
+    propaganda: {
+      sides: [
+        {
+          name: "Estados Unidos e aliados",
+          slogans: [
+            "Lutar contra o terrorismo",
+            "Paz e segurança mundial",
+            "Justiça para as vítimas do 11 de setembro",
+          ],
+          mediaOutlets: [
+            "Notícias de televisão",
+            "Jornais",
+            "Documentários",
+            "Cartazes de campanha",
+          ],
+          techniques: [
+            "Apelo à união nacional",
+            "Mobilização por meio do patriotismo",
+            "Demonização do inimigo",
+          ],
+        },
+        {
+          name: "Al-Qaeda",
+          slogans: [
+            "Guerra santa",
+            "Expulsar os infiéis",
+            "Libertação dos muçulmanos",
+          ],
+          mediaOutlets: [
+            "Vídeos e mensagens online",
+            "Manifestações públicas",
+            "Meios de comunicação jihadistas",
+          ],
+          techniques: [
+            "Apelo à religião",
+            "Guerra psicológica",
+            "Utilização de mídia como propaganda de luta contra o ocidente",
+          ],
+        },
+      ],
+      analysis:
+        "A propaganda dos Estados Unidos foi focada em unir a nação contra a ameaça terrorista e justificar a invasão do Afeganistão. A mídia destacou a reação emocional da população, enquanto o lado da Al-Qaeda usou a imagem do 'inimigo opressor' e da 'luta pela liberdade religiosa' como uma ferramenta de mobilização.",
+    },
+    theories: [
+      {
+        title: "O impacto da guerra ao terror",
+        description:
+          "Os ataques de 11 de setembro marcaram o início da chamada 'Guerra ao Terror', uma série de operações militares, incluindo a invasão do Afeganistão e do Iraque, com o objetivo de erradicar organizações terroristas como a Al-Qaeda.",
+        evidence:
+          "O lançamento da Operação Enduring Freedom e a posterior ocupação militar do Afeganistão são exemplos de como os ataques do 11 de setembro foram usados para justificar intervenções militares em várias regiões do mundo.",
+      },
+      {
+        title: "Teoria do Inside Job",
+        description:
+          "Alguns afirmam que os ataques de 11 de setembro foram planejados ou permitidos pelo governo dos EUA para justificar a invasão do Afeganistão e do Iraque.",
+        evidence:
+          "Relatórios de investigações oficiais, como os da Comissão do 11 de Setembro, desmentem essas alegações, afirmando que não houve envolvimento do governo dos EUA nos ataques.",
+      },
+      {
+        title: "Teoria da Demolição Controlada",
+        description:
+          "Teóricos alegam que as Torres Gêmeas e o prédio 7 do World Trade Center foram destruídos por explosões controladas, não por colisões de aviões.",
+        evidence:
+          "Investigações do NIST (Instituto Nacional de Padrões e Tecnologia) concluem que o colapso das torres foi devido a incêndios causados pelos impactos dos aviões, sem evidência de explosivos.",
+      },
+      {
+        title: "Teoria da Invasão do Afeganistão como Justificativa",
+        description:
+          "Após os ataques de 11 de setembro, alguns especulam que o governo dos EUA já havia planejado a invasão do Afeganistão como parte de uma estratégia geopolítica e usou os ataques como pretexto.",
+        evidence:
+          "Documentos internos, como memorandos e relatórios de inteligência, indicam que a invasão do Afeganistão foi uma resposta aos ataques, mas também parte de uma política de longo prazo para combater o terrorismo e a Al-Qaeda.",
+      },
+      {
+        title: "Teoria do Vingador do 11 de Setembro",
+        description:
+          "Alguns alegam que o 11 de setembro foi uma resposta direta aos ataques anteriores dos EUA no Oriente Médio, incluindo o apoio a Israel e as intervenções militares em países muçulmanos.",
+        evidence:
+          "Estudos e declarações públicas de membros da Al-Qaeda, como Osama bin Laden, indicam que a motivação por trás do ataque foi a oposição à política externa dos EUA na região.",
+      },
+      {
+        title: "Teoria dos Aviões Não Terem Colidido",
+        description:
+          "Há quem acredite que os aviões não colidiram com os alvos ou que as colisões foram falsas, sendo manipuladas por uma rede de manipulação mediática.",
+        evidence:
+          "Essa teoria é amplamente refutada por gravações de áudio, vídeos e testemunhos de sobreviventes e investigadores, que confirmam a colisão dos aviões com as torres.",
+      },
+      {
+        title: "Teoria do Controle da Mídia e Manipulação",
+        description:
+          "Algumas pessoas acreditam que a cobertura da mídia foi manipulada para criar uma narrativa de medo e justificar as políticas de segurança e guerra no exterior.",
+        evidence:
+          "A cobertura da mídia foi intensiva, mas a ideia de que foi manipulada sistematicamente para criar medo não é suportada por investigações independentes sobre o papel da mídia durante o evento.",
+      },
+      {
+        title: "Teoria do Conhecimento Antecipado",
+        description:
+          "Surgiu a especulação de que algumas pessoas sabiam dos ataques com antecedência, seja por parte do governo dos EUA ou agências de inteligência estrangeiras.",
+        evidence:
+          "Diversas investigações do governo e relatórios da Comissão do 11 de setembro mostraram que, embora houvesse falhas de inteligência, não houve evidência concreta de que o governo dos EUA tenha sabido dos ataques com antecedência.",
+      },
+    ],
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/2/2b/WTC_9-11_Destruction.jpg",
+    relatedNews: [
+      {
+        title: "Ataques terroristas de 11 de setembro de 2001",
+        description:
+          "Em 11 de setembro de 2001, os Estados Unidos sofreram ataques terroristas coordenados por Al-Qaeda, resultando na destruição das Torres Gêmeas em Nova York e ataques ao Pentágono.",
+        source: "BBC News",
+        date: "2001-09-11",
+      },
+      {
+        title: "Guerra ao Terror: Invasão do Afeganistão",
+        description:
+          "Após os ataques de 11 de setembro, os Estados Unidos, com o apoio de aliados internacionais, invadiram o Afeganistão em outubro de 2001 para remover o regime talibã e combater a Al-Qaeda.",
+        source: "CNN",
+        date: "2001-10-07",
+      },
+      {
+        title: "Ataques de 11 de setembro: Um dia que mudou o mundo",
+        description:
+          "Cobertura ao vivo dos ataques de 11 de setembro e das consequências imediatas para a segurança global e os EUA.",
+        source: "CNN",
+        date: "2001-09-11",
+      },
+      {
+        title:
+          "Governo dos EUA responde aos ataques com a guerra no Afeganistão",
+        description:
+          "Após os ataques de 11 de setembro, os EUA iniciaram a guerra no Afeganistão contra o Talibã e Al-Qaeda.",
+        source: "BBC",
+        date: "2001-10-07",
+      },
+    ],
+    financialInfo: {
+      banks: [
+        {
+          name: "Goldman Sachs",
+          country: "Estados Unidos",
+          assets:
+            "O setor financeiro dos Estados Unidos, incluindo bancos como Goldman Sachs, enfrentou um impacto significativo após os ataques, mas também se beneficiou com o aumento da demanda por serviços relacionados à reconstrução.",
+          amount: "Investimentos em segurança e reconstrução",
+          currency: "Dólar Americano",
+          owners: [
+            {
+              name: "Lloyd Blankfein",
+              religion: "Judaísmo",
+              politicalAffiliation: "Democrata",
+            },
+          ],
+          side: "Aliados",
+        },
+        {
+          name: "Afghan Central Bank",
+          country: "Afeganistão",
+          assets:
+            "Após a queda do regime talibã, o Afeganistão iniciou uma reconstrução que envolveu a reestruturação de seu sistema financeiro com apoio internacional.",
+          amount: "Reconstrução financeira e ajuda internacional",
+          currency: "Afegane",
+          owners: [],
+          side: "Aliados",
+        },
+      ],
+      financiers: [
+        {
+          name: "Governo dos EUA",
+          type: "government",
+          amount:
+            "Bilhões de dólares foram investidos em segurança interna, defesa e operações militares.",
+          assets:
+            "A maior parte do financiamento foi direcionada para o Departamento de Defesa e segurança nacional, com bilhões gastos em operações militares e programas de inteligência.",
+          religion: "Cristianismo",
+          currency: "Dólar Americano",
+          side: "Aliados",
+        },
+      ],
+      financialImpact:
+        "Os ataques causaram uma enorme crise econômica global, com os mercados financeiros sendo severamente impactados nas semanas seguintes. A guerra subsequente no Afeganistão e os custos da segurança interna também causaram grandes despesas, que resultaram em bilhões de dólares sendo gastos nos anos seguintes.",
+    },
+    casualties: {
+      military:
+        "Cerca de 3.000 civis morreram nos ataques de 11 de setembro, e centenas de militares morreram nas operações subsequentes no Afeganistão.",
+      civilian: "Cerca de 3.000 civis mortos nos atentados terroristas.",
+      total:
+        "Cerca de 3.000 mortos diretamente no 11 de setembro e dezenas de milhares em conflitos subsequentes relacionados à 'Guerra ao Terror'.",
+    },
+    keyFigures: [
+      {
+        name: "Osama bin Laden",
+        role: "Líder da Al-Qaeda",
+        side: "Al-Qaeda",
+        fate: "Bin Laden foi capturado e morto pelos EUA em 2011 após uma operação em Abbottabad, Paquistão.",
+      },
+      {
+        name: "George W. Bush",
+        role: "Presidente dos Estados Unidos",
+        side: "Aliados",
+        fate: "Bush liderou a resposta militar aos ataques, com a invasão do Afeganistão e do Iraque.",
+      },
+    ],
+    winners: [
+      {
+        name: "Estados Unidos e aliados",
+        country: "Estados Unidos",
+        side: "Aliados",
+        date: "2001-09-11",
+      },
+    ],
+  },
+  {
     id: "war-on-terror",
     year: 2001,
     title: "Guerra ao Terror",
@@ -2490,7 +4820,8 @@ export const warEvents: WarEvent[] = [
         evidence: "Relatórios de inspeção da ONU",
       },
     ],
-    image: "placeholder.svg",
+    image:
+      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/War_on_Terror_montage1.png/960px-War_on_Terror_montage1.png",
     relatedNews: [
       {
         title: "Ataques de 11 de Setembro",
@@ -2514,7 +4845,7 @@ export const warEvents: WarEvent[] = [
         {
           name: "Federal Reserve",
           country: "Estados Unidos",
-          owners: [{ name: "Alan Greenspan", religion: "Agnóstico" }],
+          owners: [{ name: "Alan Greenspan", religion: "Judeu" }],
         },
         {
           name: "Banco Central do Iraque",
@@ -2666,7 +4997,231 @@ export const warEvents: WarEvent[] = [
       },
     ],
   },
-
+  {
+    id: "snowden-leaks-2013",
+    year: 2013,
+    title: "Vazamentos de Edward Snowden sobre vigilância global",
+    description:
+      "Em 2013, o ex-técnico da CIA e contratante da NSA Edward Snowden vazou documentos classificados que revelavam programas de vigilância global em massa conduzidos pelos EUA e aliados.",
+    mediaPortrayal:
+      "Snowden foi retratado como herói pelos defensores da privacidade e como traidor pelo governo dos EUA. A mídia internacional deu ampla cobertura aos vazamentos.",
+    propaganda: {
+      sides: [
+        {
+          name: "Governo dos EUA",
+          slogans: [
+            "Traição à pátria",
+            "Segurança nacional em risco",
+            "Snowden é um criminoso",
+          ],
+          mediaOutlets: ["Fox News", "CNN", "Washington Post"],
+          techniques: [
+            "Apelo ao medo",
+            "Demonização do whistleblower",
+            "Minimização das revelações",
+          ],
+        },
+        {
+          name: "Defensores da Privacidade",
+          slogans: [
+            "Herói da liberdade",
+            "Proteção da privacidade",
+            "Vigilância ilegal exposta",
+          ],
+          mediaOutlets: ["The Guardian", "Der Spiegel", "The Intercept"],
+          techniques: [
+            "Foco em direitos civis",
+            "Exposição de abusos",
+            "Humanização de Snowden",
+          ],
+        },
+      ],
+      analysis:
+        "O caso Snowden tornou-se um campo de batalha narrativo entre segurança nacional e liberdades civis, com cada lado usando diferentes técnicas de enquadramento midiático.",
+    },
+    theories: [
+      {
+        title: "Vigilância global em massa pela NSA",
+        description:
+          "A NSA coletava dados de bilhões de pessoas sem mandado judicial",
+        evidence:
+          "Documentos PRISM, XKeyscore e outros comprovando coleta de metadados",
+      },
+      {
+        title: "Espionagem de aliados dos EUA",
+        description:
+          "EUA espionavam líderes de países aliados como Alemanha e Brasil",
+        evidence:
+          "Documentos mostrando espionagem contra Angela Merkel e Dilma Rousseff",
+      },
+      {
+        title: "Colaboração de empresas de tecnologia",
+        description:
+          "Grandes empresas de tecnologia colaboravam secretamente com a NSA",
+        evidence:
+          "Slides da NSA mostrando participação da Microsoft, Google, Apple e outras no PRISM",
+      },
+      {
+        title: "Interceptação de cabos submarinos",
+        description:
+          "NSA e GCHQ interceptavam comunicações em cabos de fibra óptica submarinos",
+        evidence: "Documentos TEMPORA e UPSTREAM comprovando a prática",
+      },
+      {
+        title: "Criação de backdoors em equipamentos",
+        description:
+          "Agências de inteligência inseriam vulnerabilidades deliberadas em sistemas",
+        evidence: "Documentos sobre programas como BULLRUN e EDGEHILL",
+      },
+    ],
+    image: "https://example.com/snowden-portrait.jpg",
+    relatedNews: [
+      {
+        title: "The Guardian publica primeiros documentos Snowden",
+        description:
+          "Jornal britânico inicia série de reportagens baseadas nos vazamentos",
+        source: "The Guardian",
+        date: "06/2013",
+      },
+      {
+        title: "EUA acusam Snowden de espionagem",
+        description:
+          "Departamento de Justiça dos EUA apresenta acusações formais contra Snowden",
+        source: "Washington Post",
+        date: "06/2013",
+      },
+      {
+        title: "Snowden recebe asilo temporário na Rússia",
+        description:
+          "Após ficar preso no aeroporto de Moscou, Rússia concede asilo por 1 ano",
+        source: "BBC",
+        date: "08/2013",
+      },
+    ],
+    financialInfo: {
+      banks: [
+        {
+          name: "Bank of America",
+          country: "USA",
+          side: "Governo dos EUA",
+          currency: "USD",
+          owners: [
+            {
+              name: "Vanguard Group",
+              type: "Institutional Investor",
+              religion: "N/A",
+              politicalAffiliation: "N/A",
+              president: {
+                name: "F. William McNabb III",
+                religion: "Presbyterian (Protestant)",
+                fromYear: 2008,
+                toYear: 2017,
+              },
+            },
+            {
+              name: "BlackRock",
+              type: "Institutional Investor",
+              religion: "N/A",
+              politicalAffiliation: "N/A",
+              president: {
+                name: "Larry Fink",
+                religion: "Judaism",
+                fromYear: 1988,
+              },
+            },
+            {
+              name: "Bill & Melinda Gates Foundation",
+              type: "Non-profit Organization",
+              religion: "Christianity",
+              politicalAffiliation: "Democratic-leaning",
+              president: {
+                name: "Jeff Raikes",
+                religion: "Methodist (Protestant Christianity)",
+                fromYear: 2008,
+                toYear: 2014,
+              },
+            },
+          ],
+        },
+      ],
+      financiers: [
+        {
+          name: "Vanguard Group",
+          type: "organization",
+          amount: "Approx. 7-8% ownership",
+          assets: "Large multi-billion dollar investment portfolio",
+          religion: "N/A",
+          currency: "USD",
+          side: "Private",
+          president: {
+            name: "F. William McNabb III",
+            religion: "Presbyterian (Protestant)",
+            fromYear: 2008,
+            toYear: 2017,
+          },
+        },
+        {
+          name: "BlackRock",
+          type: "organization",
+          amount: "Approx. 6-7% ownership",
+          assets: "Multi-billion dollar investment funds",
+          religion: "N/A",
+          currency: "USD",
+          side: "Private",
+          president: {
+            name: "Larry Fink",
+            religion: "Judaism",
+            fromYear: 1988,
+          },
+        },
+        {
+          name: "Bill & Melinda Gates Foundation",
+          type: "organization",
+          amount: "Approx. 1.5% ownership",
+          assets: "Approx. $40 billion foundation",
+          religion: "Christianity",
+          currency: "USD",
+          side: "Private",
+          president: {
+            name: "Jeff Raikes",
+            religion: "Methodist (Protestant Christianity)",
+            fromYear: 2008,
+            toYear: 2014,
+          },
+        },
+      ],
+      financialImpact:
+        "As revelações causaram perdas financeiras para empresas de tecnologia e custos legais para governos envolvidos",
+    },
+    keyFigures: [
+      {
+        name: "Edward Snowden",
+        role: "Whistleblower",
+        side: "Defensores da Privacidade",
+        fate: "Asilado na Rússia",
+      },
+      {
+        name: "Glenn Greenwald",
+        role: "Jornalista do The Guardian",
+        side: "Defensores da Privacidade",
+        fate: "Co-fundador do The Intercept",
+      },
+      {
+        name: "Barack Obama",
+        role: "Presidente dos EUA",
+        side: "Governo dos EUA",
+        fate: "Defendeu programas de vigilância",
+      },
+    ],
+    winners: [
+      {
+        name: "Movimento pela privacidade digital",
+        country: "Global",
+        side: "Defensores da Privacidade",
+        date: "2013-ongoing",
+      },
+    ],
+  },
   {
     id: "ukraine-conflict",
     year: 2014,
@@ -2801,6 +5356,163 @@ export const warEvents: WarEvent[] = [
       ],
     },
     image: "placeholder.svg",
+  },
+  {
+    id: "mcafee_2020",
+    year: 2020,
+    title: "Vazamentos de John McAfee",
+    description:
+      "John McAfee, o controverso empresário de software antivírus, divulgou várias informações e teorias sobre vigilância, corrupção e manipulação de dados por governos e grandes corporações. McAfee se tornou um defensor feroz da liberdade digital e da privacidade, frequentemente vazando informações que indicavam abusos de poder por parte de governos, corporações e até de sistemas financeiros internacionais.",
+    mediaPortrayal:
+      "A mídia retratou McAfee como um defensor da privacidade e liberdade cibernética, mas também como uma figura excêntrica e polarizadora. Sua postura radical contra o governo e os sistemas financeiros foi amplamente discutida.",
+    propaganda: {
+      sides: [
+        {
+          name: "John McAfee",
+          slogans: [
+            "Liberdade digital",
+            "Privacidade é um direito",
+            "Resistindo à vigilância",
+          ],
+          mediaOutlets: ["Twitter", "Reddit", "YouTube"],
+          techniques: [
+            "Vazamento de informações",
+            "Divulgação de entrevistas e vídeos",
+            "Desafios públicos",
+          ],
+        },
+        {
+          name: "Governos e Corporations",
+          slogans: [
+            "Segurança nacional",
+            "Proteção contra ameaças",
+            "Antiterrorismo",
+          ],
+          mediaOutlets: ["CNN", "BBC", "The New York Times"],
+          techniques: [
+            "Desinformação",
+            "Crítica pública a McAfee",
+            "Defesa da vigilância como necessária para a segurança",
+          ],
+        },
+      ],
+      analysis:
+        "A propaganda de McAfee focava em alertar o público sobre os abusos de privacidade e a vigilância em massa. Por outro lado, os governos e grandes corporações tentaram desacreditá-lo e defender o status quo da segurança digital como uma questão nacional.",
+    },
+    theories: [
+      {
+        title: "Corrupção Governamental e Manipulação de Dados",
+        description:
+          "McAfee alegou que grandes governos e corporações estavam envolvidos na manipulação de dados pessoais para fins de controle social e político.",
+        evidence:
+          "Em vários tweets e entrevistas, McAfee afirmou que hackers patrocinados por governos estavam infiltrando sistemas financeiros globais e manipulando dados para fins políticos e econômicos. Ele também sugeriu que essas ações eram parte de uma conspiração para controlar a sociedade.",
+      },
+      {
+        title: "Vigilância em Massa e Violação de Privacidade",
+        description:
+          "McAfee revelou que as agências governamentais, como a NSA e o FBI, estavam invadindo e monitorando os dados privados dos cidadãos, violando seus direitos constitucionais.",
+        evidence:
+          "McAfee revelou, em suas plataformas pessoais e por meio de entrevistas, detalhes sobre o uso de tecnologias de vigilância em massa por várias agências, além de criticar o uso de programas como PRISM e XKeyscore que ele acreditava serem apenas a ponta do iceberg.",
+      },
+      {
+        title: "Manipulação e Desinformação por Grandes Corporações",
+        description:
+          "McAfee sugeriu que as grandes corporações estavam manipulando dados pessoais de usuários para maximizar lucros, além de influenciar políticas públicas através do controle da informação.",
+        evidence:
+          "Ele denunciou como empresas como Google e Facebook estavam coletando dados de usuários sem o consentimento informado, usando esses dados para publicidade direcionada e influenciando a opinião pública.",
+      },
+      {
+        title: "Conspiração contra a Criptomoeda",
+        description:
+          "McAfee afirmou que o governo e grandes bancos estavam trabalhando juntos para derrubar a criptomoeda e bloquear a adoção de alternativas descentralizadas ao sistema financeiro tradicional.",
+        evidence:
+          "Em várias postagens nas redes sociais, McAfee explicou como governos e bancos estavam tentando desacreditar o Bitcoin e outras criptomoedas, alegando que a ascensão da moeda digital representava uma ameaça ao controle centralizado das finanças globais.",
+      },
+      {
+        title: "Assassinato e Corrupção em Países Estrangeiros",
+        description:
+          "Em suas postagens públicas, McAfee também sugeriu que havia sido alvo de ataques e ameaças de assassinato devido às suas ações, com alegações de que ele estava sendo perseguido por governos devido ao que sabia sobre práticas de corrupção internacional.",
+        evidence:
+          "McAfee discutiu em detalhes como suas ações e suas investigações sobre corrupção governamental o haviam colocado em perigo, e ele chegou a sugerir que estava sendo perseguido por governos corruptos.",
+      },
+    ],
+    image: "URL_to_image_of_John_McAfee_or_related_image", // Coloque o link ou URL da imagem relevante
+    relatedNews: [
+      {
+        title:
+          "John McAfee denuncia espionagem em massa e corrupção governamental",
+        description:
+          "McAfee faz uma série de afirmações sobre a vigilância do governo dos EUA e de corporações globais, alegando manipulação de dados e invasão de privacidade.",
+        source: "The Guardian",
+        date: "2020-03-25",
+      },
+      {
+        title: "John McAfee fala sobre sua luta contra governos e corporações",
+        description:
+          "McAfee compartilha suas experiências e teorias sobre corrupção governamental e controle corporativo, alertando sobre os riscos de privacidade.",
+        source: "RT News",
+        date: "2020-06-18",
+      },
+    ],
+    financialInfo: {
+      banks: [
+        {
+          name: "Barclays",
+          country: "Reino Unido",
+          assets: "1,5 trilhões de dólares",
+          amount: "Não disponível",
+          currency: "GBP",
+          owners: [
+            {
+              name: "Jes Staley",
+              religion: "Cristianismo",
+              politicalAffiliation: "Desconhecida",
+            },
+          ],
+          side: "Corporação",
+        },
+      ],
+      financiers: [
+        {
+          name: "Governo dos EUA",
+          type: "government",
+          amount: "Investimentos em vigilância e tecnologia",
+          assets: "Bilhões de dólares em programas de segurança cibernética",
+          religion: "Cristianismo",
+          currency: "USD",
+          side: "Governo",
+        },
+      ],
+      financialImpact:
+        "Os vazamentos de McAfee destacaram o impacto das tecnologias de vigilância em massa nos direitos de privacidade e o controle global das finanças, afetando negativamente a liberdade digital e a segurança econômica.",
+    },
+    casualties: {
+      military: "Não aplicável",
+      civilian: "Não aplicável",
+      total: "Não aplicável",
+    },
+    keyFigures: [
+      {
+        name: "John McAfee",
+        role: "Empresário e Defensor da Privacidade Digital",
+        side: "Liberdade digital e privacidade",
+        fate: "Morreu em 2021 enquanto estava preso na Espanha, aguardando extradição para os EUA",
+      },
+      {
+        name: "Governos dos EUA e do Reino Unido",
+        role: "Autoridades governamentais",
+        side: "Vigilância e controle de dados",
+        fate: "Envolvimento em investigações de privacidade e vigilância",
+      },
+    ],
+    winners: [
+      {
+        name: "John McAfee",
+        country: "Espanha (Exílio)",
+        side: "Liberdade digital e privacidade",
+        date: "2020",
+      },
+    ],
   },
   {
     id: "ai-wars",

@@ -9,13 +9,17 @@ const Index = () => {
       <Header />
 
       <main className="flex-grow">
-        <div className="bg-timeline-navy text-white py-16">
+        <div className="bg-timeline-navy py-16">
           <div className="container mx-auto px-4 text-center">
             <h1 className="text-4xl md:text-5xl font-bold mb-4">CronoGuerra</h1>
             <p className="text-xl md:text-2xl max-w-3xl mx-auto">
               Uma linha do tempo interativa sobre conflitos e guerras do período
               pré-napoleônico até 2025, com fatos históricos, representações
-              midiáticas e teorias.
+              midiáticas e teorias. Todas as informações são coletadas da
+              internet e do chatGPT. Atenção: as informações aqui apresentadas
+              podem não estar completamente atualizadas, e ambos os lados das
+              guerras podem estar errados, mesmo os vitoriósos. Quem ganha as
+              guerras, nem sempre são os bonzinhos.
             </p>
           </div>
         </div>

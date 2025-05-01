@@ -1,19 +1,31 @@
-"use client"
+"use client";
 
-import type React from "react"
-import type { TimePeriod } from "../data/warEvents"
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip"
+import type React from "react";
+import type { TimePeriod } from "../data/warEvents";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 interface TimelinePeriodProps {
-  period: TimePeriod
-  width: string
-  position: string
-  isActive: boolean
-  onClick: () => void
-  isMobile: boolean
+  period: TimePeriod;
+  width: string;
+  position: string;
+  isActive: boolean;
+  onClick: () => void;
+  isMobile: boolean;
 }
 
-const TimelinePeriod: React.FC<TimelinePeriodProps> = ({ period, width, position, isActive, onClick, isMobile }) => {
+const TimelinePeriod: React.FC<TimelinePeriodProps> = ({
+  period,
+  width,
+  position,
+  isActive,
+  onClick,
+  isMobile,
+}) => {
   const periodContent = (
     <div className="text-xs text-center">
       <div className="font-medium">{period.name}</div>
@@ -21,12 +33,14 @@ const TimelinePeriod: React.FC<TimelinePeriodProps> = ({ period, width, position
         {period.startYear} - {period.endYear}
       </div>
     </div>
-  )
+  );
 
   return (
     <div
       className={`absolute cursor-pointer transition-all duration-300 ${
-        isActive ? "h-10 -top-1 z-20" : "h-8 top-0 z-10 hover:h-9 hover:-top-0.5"
+        isActive
+          ? "h-10 -top-1 z-20"
+          : "h-8 top-0 z-10 hover:h-9 hover:-top-0.5"
       }`}
       style={{
         width,
@@ -47,12 +61,16 @@ const TimelinePeriod: React.FC<TimelinePeriodProps> = ({ period, width, position
           </Tooltip>
         </TooltipProvider>
       ) : (
-        <div className={`absolute w-full text-white font-medium text-center ${isActive ? "-top-8" : "-top-7"}`}>
+        <div
+          className={`absolute w-full text-white font-medium text-center ${
+            isActive ? "-top-8" : "-top-7"
+          }`}
+        >
           {periodContent}
         </div>
       )}
     </div>
-  )
-}
+  );
+};
 
-export default TimelinePeriod
+export default TimelinePeriod;
