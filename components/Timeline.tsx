@@ -15,7 +15,12 @@ const Timeline = () => {
   const filteredEvents = selectedPeriodId
     ? warEvents.filter((e) => {
         const period = timePeriods.find((p) => p.id === selectedPeriodId);
-        return period && e.year >= period.startYear && e.year <= period.endYear;
+        return (
+          period &&
+          e.year !== undefined &&
+          e.year >= period.startYear &&
+          e.year <= period.endYear
+        );
       })
     : warEvents;
 
