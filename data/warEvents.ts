@@ -172,106 +172,106 @@ export const warEvents: WarEvent[] = [
   {
     id: "hundred-years-war-1337",
     year: 1337,
-    title: "Hundred Years' War",
+    title: "Guerra dos Cem Anos",
     description:
-      "A prolonged conflict between England and France, fought primarily over territorial disputes and the French throne. It spanned 116 years and is marked by significant battles, political intrigue, and the rise of national identities.",
+      "Um conflito prolongado entre Inglaterra e França, travado principalmente por disputas territoriais e pelo trono francês. Durou 116 anos e é marcado por batalhas significativas, intrigas políticas e o surgimento das identidades nacionais.",
     mediaPortrayal:
-      "The war was heavily covered by chroniclers, often glorifying major battles such as Agincourt and depicting the conflict as a struggle for national survival, with heroic leaders like Joan of Arc emerging from the French side.",
+      "A guerra foi amplamente coberta por cronistas, que frequentemente glorificavam batalhas como Agincourt e retratavam o conflito como uma luta pela sobrevivência nacional, com líderes heroicos como Joana d’Arc emergindo do lado francês.",
     propaganda: {
       sides: [
         {
-          name: "Kingdom of England",
-          slogans: ["Claim to the French Throne", "Defenders of English soil"],
-          mediaOutlets: ["Royal proclamations", "Chroniclers"],
-          techniques: ["Military victories", "Glorification of royal lineage"],
+          name: "Reino da Inglaterra",
+          slogans: ["Reivindicação ao Trono Francês", "Defensores do solo inglês"],
+          mediaOutlets: ["Proclamações reais", "Cronistas"],
+          techniques: ["Vitórias militares", "Glorificação da linhagem real"],
         },
         {
-          name: "Kingdom of France",
-          slogans: ["Defenders of the Crown", "Liberators of France"],
-          mediaOutlets: ["Royal speeches", "Religious endorsements"],
-          techniques: ["Religious justification", "Patriotism and unity"],
+          name: "Reino da França",
+          slogans: ["Defensores da Coroa", "Libertadores da França"],
+          mediaOutlets: ["Discursos reais", "Endossos religiosos"],
+          techniques: ["Justificação religiosa", "Patriotismo e unidade"],
         },
       ],
       analysis:
-        "Both sides used media and propaganda to rally support for their causes. The English framed their struggle as a just claim to the throne, while the French presented themselves as defenders of their kingdom and sovereignty.",
+        "Ambos os lados usaram a mídia e a propaganda para angariar apoio às suas causas. Os ingleses apresentaram sua luta como uma reivindicação justa ao trono, enquanto os franceses se colocaram como defensores do reino e da soberania.",
     },
     theories: [
       {
-        title: "Feudalism vs. Nation-State",
+        title: "Feudalismo vs. Estado-Nação",
         description:
-          "Some historians argue that the war marked the decline of feudalism and the rise of the modern nation-state, as the conflict brought about the centralization of power in both England and France.",
+          "Alguns historiadores argumentam que a guerra marcou o declínio do feudalismo e o surgimento do Estado-nação moderno, pois o conflito levou à centralização do poder tanto na Inglaterra quanto na França.",
         evidence:
-          "The creation of standing armies and new forms of taxation, alongside the increasing power of monarchs.",
+          "A criação de exércitos permanentes e novas formas de tributação, juntamente com o aumento do poder dos monarcas.",
       },
     ],
     image:
       "https://cdn.britannica.com/19/172519-050-F3B2578B/Battle-of-Agincourt.jpg",
     relatedNews: [
       {
-        title: "Battle of Agincourt (1415)",
+        title: "Batalha de Agincourt (1415)",
         description:
-          "The English achieved a decisive victory at the Battle of Agincourt, where Henry V's outnumbered forces defeated the French.",
-        source: "Chronicles of the Hundred Years' War",
+          "Os ingleses obtiveram uma vitória decisiva na Batalha de Agincourt, onde as forças de Henrique V, em menor número, derrotaram os franceses.",
+        source: "Crônicas da Guerra dos Cem Anos",
         date: "1415-10-25",
       },
     ],
     financialInfo: {
       banks: [
         {
-          name: "Medici Bank",
-          country: "Italy",
-          assets: "Gold reserves",
-          amount: "Significant financing for France",
-          currency: "Florin",
+          name: "Banco Medici",
+          country: "Itália",
+          assets: "Reservas de ouro",
+          amount: "Financiamento significativo para a França",
+          currency: "Florim",
           owners: [
             {
-              name: "Medici Family",
+              name: "Família Medici",
               type: "individual",
-              religion: "Catholic",
-              politicalAffiliation: "Pro-French interests",
+              religion: "Católica",
+              politicalAffiliation: "Interesses pró-França",
             },
           ],
-          side: "France",
+          side: "França",
         },
       ],
       financiers: [
         {
-          name: "King Edward III",
+          name: "Rei Eduardo III",
           type: "government",
-          amount: "Funding through taxes and the exploitation of territories",
-          assets: "Royal Treasury",
-          religion: "Catholic",
-          currency: "Pound Sterling",
-          side: "England",
+          amount: "Financiamento por meio de impostos e exploração de territórios",
+          assets: "Tesouro Real",
+          religion: "Católica",
+          currency: "Libra Esterlina",
+          side: "Inglaterra",
         },
       ],
       financialImpact:
-        "The prolonged war drained the economies of both kingdoms, leading to massive debt and an increased reliance on loans from banking families like the Medici.",
+        "A guerra prolongada drenou as economias de ambos os reinos, levando a dívidas massivas e a uma dependência crescente de empréstimos de famílias bancárias como os Medici.",
     },
     casualties: {
-      military: "Approximately 3 million",
-      civilian: "Hundreds of thousands (due to famine and disease)",
-      total: "3-4 million",
+      military: "Aproximadamente 3 milhões",
+      civilian: "Centenas de milhares (devido à fome e doenças)",
+      total: "3–4 milhões",
     },
     keyFigures: [
       {
-        name: "Edward III of England",
-        role: "King of England",
-        side: "England",
-        fate: "Reigned until 1377",
+        name: "Eduardo III da Inglaterra",
+        role: "Rei da Inglaterra",
+        side: "Inglaterra",
+        fate: "Reinou até 1377",
       },
       {
-        name: "Joan of Arc",
-        role: "French military leader",
-        side: "France",
-        fate: "Executed in 1431",
+        name: "Joana d’Arc",
+        role: "Líder militar francesa",
+        side: "França",
+        fate: "Executada em 1431",
       },
     ],
     winners: [
       {
-        name: "Kingdom of France",
-        country: "France",
-        side: "France",
+        name: "Reino da França",
+        country: "França",
+        side: "França",
         date: "1453-10-19",
       },
     ],
@@ -279,111 +279,112 @@ export const warEvents: WarEvent[] = [
   {
     id: "war-of-the-roses-1455",
     year: 1455,
-    title: "War of the Roses",
+    title: "Guerra das Rosas",
     description:
-      "A series of civil wars fought between the houses of Lancaster (red rose) and York (white rose) for control of the English throne. The conflict led to the eventual establishment of the Tudor dynasty.",
+      "Uma série de guerras civis travadas entre as casas de Lancaster (rosa vermelha) e York (rosa branca) pelo controle do trono inglês. O conflito levou ao eventual estabelecimento da dinastia Tudor.",
     mediaPortrayal:
-      "Medieval chroniclers depicted the war as a tragic struggle, often focusing on the personal ambitions of the key players rather than broader political causes. The story of Richard III's villainous reign became legendary in English culture.",
+      "Os cronistas medievais retrataram a guerra como uma luta trágica, frequentemente focando nas ambições pessoais dos principais personagens ao invés das causas políticas mais amplas. A história do reinado vilanesco de Ricardo III tornou-se lendária na cultura inglesa.",
     propaganda: {
       sides: [
         {
-          name: "House of Lancaster",
-          slogans: ["Rightful King of England", "Red Rose of Valor"],
-          mediaOutlets: ["Royal proclamations", "Pamphlets"],
+          name: "Casa de Lancaster",
+          slogans: ["Rei Legítimo da Inglaterra", "Rosa Vermelha da Valentia"],
+          mediaOutlets: ["Proclamações reais", "Panfletos"],
           techniques: [
-            "Appeals to royal lineage",
-            "Depiction of Yorkists as traitors",
+            "Apelos à linhagem real",
+            "Retrato dos iorquistas como traidores",
           ],
         },
         {
-          name: "House of York",
-          slogans: ["True King of England", "White Rose of Purity"],
-          mediaOutlets: ["Chroniclers", "Public speeches"],
+          name: "Casa de York",
+          slogans: ["Verdadeiro Rei da Inglaterra", "Rosa Branca da Pureza"],
+          mediaOutlets: ["Cronistas", "Discursos públicos"],
           techniques: [
-            "Depiction of Lancaster as usurpers",
-            "Appeals to loyalty and justice",
+            "Retrato dos lancastrianos como usurpadores",
+            "Apelos à lealdade e justiça",
           ],
         },
       ],
       analysis:
-        "The media portrayed the war as a noble struggle for the rightful ruler of England, but it was driven largely by personal ambition and a desire for power.",
+        "A mídia retratou a guerra como uma luta nobre pelo governante legítimo da Inglaterra, mas foi amplamente motivada por ambições pessoais e desejo de poder.",
     },
     theories: [
       {
-        title: "Dynastic Struggle vs. Feudal Decline",
+        title: "Luta Dinástica vs. Declínio Feudal",
         description:
-          "The War of the Roses may have been more about the breakdown of feudal structures and the shift toward a centralized monarchy than about dynastic claims alone.",
+          "A Guerra das Rosas pode ter sido mais sobre o colapso das estruturas feudais e a transição para uma monarquia centralizada do que sobre reivindicações dinásticas propriamente ditas.",
         evidence:
-          "The eventual victory of Henry VII marked the end of feudal fragmentation and the rise of the Tudor dynasty, which centralized power.",
+          "A vitória final de Henrique VII marcou o fim da fragmentação feudal e o surgimento da dinastia Tudor, que centralizou o poder.",
       },
     ],
     image:
       "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/King_Henry_VII_from_NPG.jpg/250px-King_Henry_VII_from_NPG.jpg",
     relatedNews: [
       {
-        title: "Battle of Bosworth Field",
+        title: "Batalha de Bosworth Field",
         description:
-          "The decisive battle of the war, where Richard III was killed and Henry Tudor ascended to the throne as Henry VII.",
-        source: "Chronicles of the War of the Roses",
+          "A batalha decisiva da guerra, onde Ricardo III foi morto e Henrique Tudor ascendeu ao trono como Henrique VII.",
+        source: "Crônicas da Guerra das Rosas",
         date: "1485-08-22",
       },
     ],
     financialInfo: {
       banks: [
         {
-          name: "Medici Bank",
-          country: "Italy",
-          assets: "Gold reserves",
-          amount: "None directly involved in this war",
-          currency: "Florin",
+          name: "Banco Medici",
+          country: "Itália",
+          assets: "Reservas de ouro",
+          amount: "Nenhuma participação direta nesta guerra",
+          currency: "Florim",
           owners: [
             {
-              name: "Medici Family",
+              name: "Família Medici",
               type: "individual",
-              religion: "Catholic",
-              politicalAffiliation: "Pro-Tudor interests",
+              religion: "Católica",
+              politicalAffiliation: "Interesses pró-Tudor",
             },
           ],
-          side: "Tudor (via alliances)",
+          side: "Tudor (via alianças)",
         },
       ],
       financiers: [
         {
-          name: "Henry Tudor",
+          name: "Henrique Tudor",
           type: "individual",
-          amount: "Personal fortune from his marriage to Elizabeth of York",
-          side: "Lancaster (by marriage)",
-          religion: "Catholic",
-          currency: "Pound Sterling",
+          amount:
+            "Fortuna pessoal proveniente de seu casamento com Elizabeth de York",
+          side: "Lancaster (por casamento)",
+          religion: "Católica",
+          currency: "Libra Esterlina",
         },
       ],
       financialImpact:
-        "The war drained England's treasury and destabilized its economy, but the eventual victory of Henry VII helped bring long-term stability.",
+        "A guerra esgotou o tesouro da Inglaterra e desestabilizou sua economia, mas a vitória final de Henrique VII ajudou a trazer estabilidade de longo prazo.",
     },
     casualties: {
-      military: "Approx. 100,000",
-      civilian: "Tens of thousands (due to sieges and rebellion)",
-      total: "Over 100,000",
+      military: "Aproximadamente 100.000",
+      civilian: "Dezenas de milhares (devido a cercos e rebeliões)",
+      total: "Mais de 100.000",
     },
     keyFigures: [
       {
-        name: "Richard III",
-        role: "King of England",
-        side: "House of York",
-        fate: "Killed at the Battle of Bosworth",
+        name: "Ricardo III",
+        role: "Rei da Inglaterra",
+        side: "Casa de York",
+        fate: "Morto na Batalha de Bosworth",
       },
       {
-        name: "Henry VII",
-        role: "King of England",
-        side: "House of Lancaster",
-        fate: "Founded the Tudor dynasty",
+        name: "Henrique VII",
+        role: "Rei da Inglaterra",
+        side: "Casa de Lancaster",
+        fate: "Fundou a dinastia Tudor",
       },
     ],
     winners: [
       {
-        name: "House of Tudor",
-        country: "England",
-        side: "Lancaster (via marriage)",
+        name: "Casa de Tudor",
+        country: "Inglaterra",
+        side: "Lancaster (via casamento)",
         date: "1485-08-22",
       },
     ],
